@@ -5,16 +5,17 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin : 0;
     padding: 0;
-    
+    list-style: none;
   }
+  
   a {
     text-decoration : none;
+    color: inherit;
   }
   button {
     cursor: pointer;
   }
   body{
-    margin-top: 80px;
   }
   :root {
     --black : #333333;
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --red :#F85151; 
     --blue : #0085FF;
     --dGrey : #aaa;
+    --gray:rgba(33,37,41,.86);
   }
 `;
 
