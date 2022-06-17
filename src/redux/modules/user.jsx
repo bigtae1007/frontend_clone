@@ -12,13 +12,16 @@ const initialState = {
 };
 //action
 const SIGNUP = "user/CREATE_SIGNUP";
+const LOGIN = "user/LOAD_LOGIN";
 const OVERLAPEMAIL = "user/CHECK_OVERLAPEMAIL";
 //state action
 const LOADING = "user/LOADING_STATE";
 const ERROR = "user/ERROR_STATE";
 
 // action creator
+
 const signUp = createAction(SIGNUP, (payload) => ({ payload }));
+const logIn = createAction(LOGIN, (payload) => ({ payload }));
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
 
 //loadinng / error action creator
@@ -26,14 +29,30 @@ const requestLoading = createAction(LOADING, (payload) => ({ payload }));
 const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 // thunk
+//로그인
+export const __logIn = (payload) => async (dispatch, getState) => {
+  console.log(payload);
+  dispatch(requestLoading(true));
+  try {
+    const response = await api.post("/login", payload);
+    dispatch(signUp(response.data));
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
+// 회원가입
 export const __signUp = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    // const response = await api.post("/signup",{username: payload.email ,
-    //  nickname:payload.nick ,
-    //  password:payload.pw ,
-    //   passwordCheck:payload.pwCheck });
-    // dispatch(signUp(response.data));
+    const response = await api.post("/signup", {
+      username: payload.email,
+      nickname: payload.nick,
+      password: payload.pw,
+      passwordCheck: payload.pwCheck,
+    });
+    dispatch(signUp(response.data));
   } catch (error) {
     dispatch(requestError(error));
   } finally {
