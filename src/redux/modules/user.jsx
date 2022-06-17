@@ -1,9 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
 import { api } from "../../shared/api";
-
+import { setCookie } from "../../shared/Cookie";
 // initialState
 const initialState = {
-  user: null,
+  userId: null,
   username: null,
   checkEmail: true,
   isLogin: false,
@@ -31,11 +31,16 @@ const requestError = createAction(ERROR, (payload) => ({ payload }));
 // thunk
 //로그인
 export const __logIn = (payload) => async (dispatch, getState) => {
-  console.log(payload);
   dispatch(requestLoading(true));
   try {
-    const response = await api.post("/login", payload);
-    dispatch(signUp(response.data));
+    const response = await api.post("/login", {
+      username: payload.email,
+      password: payload.password,
+    });
+    setCookie("token", response.headers.authorization, 7);
+    if ((response.status = 200)) {
+      dispatch(logIn(payload.email));
+    }
   } catch (error) {
     dispatch(requestError(error));
   } finally {
@@ -50,9 +55,8 @@ export const __signUp = (payload) => async (dispatch, getState) => {
       username: payload.email,
       nickname: payload.nick,
       password: payload.pw,
-      passwordCheck: payload.pwCheck,
     });
-    dispatch(signUp(response.data));
+    // dispatch(signUp(response.data));
   } catch (error) {
     dispatch(requestError(error));
   } finally {
@@ -82,6 +86,8 @@ export default function userReudcer(state = initialState, action = {}) {
     // return { ...state, error: action.payload };
     case OVERLAPEMAIL:
       return { ...state, checkEmail: action.payload };
+    case LOGIN:
+      return { ...state, isLogin: true, userId: action.payload.payload };
     default:
       return state;
   }
