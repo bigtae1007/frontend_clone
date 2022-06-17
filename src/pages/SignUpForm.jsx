@@ -21,7 +21,7 @@ const SignUpForm = () => {
 
   const [submitState, setSubmitState] = React.useState(true);
   const [emailCheckState, setEmailCheckState] = React.useState(false);
-  const [nickCheckState, setnickCheckState] = React.useState(true);
+  const [nickCheckState, setnickCheckState] = React.useState(false);
   const [pwCheckState, setpwCheckState] = React.useState(false);
 
   //input 값 변경
@@ -37,11 +37,11 @@ const SignUpForm = () => {
     } else {
       setEmailCheckState(false);
     }
-    // if (nickCheck(signUpData.nick) && signUpData.nick > 2) {
-    //   setnickCheckState(true);
-    // } else {
-    //   setnickCheckState(false);
-    // }
+    if (nickCheck(signUpData.nick) && signUpData.nick > 2) {
+      setnickCheckState(true);
+    } else {
+      setnickCheckState(false);
+    }
     if (signUpData.pw === signUpData.pwCheck && signUpData.pw !== "") {
       setpwCheckState(true);
     } else {

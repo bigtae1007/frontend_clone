@@ -129,12 +129,6 @@ const WrapSNSLogIn = styled.div`
   gap: 10px;
   margin: 25px auto 30px;
   width: 200px;
-  > button {
-    width: 48px;
-    height: 48px;
-    border: none;
-    border-radius: 50%;
-  }
 `;
 const OrDiv = styled.div`
   display: flex;
