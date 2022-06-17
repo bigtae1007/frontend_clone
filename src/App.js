@@ -1,11 +1,13 @@
 import GlobalStyle from "./elem/GlobalStyle";
-import SingUp from "./pages/SingUp";
+import SignUp from "./pages/SignUp";
+import SignUpForm from "./pages/SignUpForm";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <SingUp />
+      {/* <SignUp /> */}
+      <SignUpForm />
     </div>
   );
 }

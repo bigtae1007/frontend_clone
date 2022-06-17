@@ -5,17 +5,54 @@ import { api } from "../../shared/api";
 const initialState = {
   user: null,
   username: null,
+  checkEmail: true,
   isLogin: false,
   loading: false,
   error: null,
 };
 //action
+const SIGNUP = "user/CREATE_SIGNUP";
+const OVERLAPEMAIL = "user/CHECK_OVERLAPEMAIL";
+//state action
 const LOADING = "user/LOADING_STATE";
 const ERROR = "user/ERROR_STATE";
+
+// action creator
+const signUp = createAction(SIGNUP, (payload) => ({ payload }));
+const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
 
 //loadinng / error action creator
 const requestLoading = createAction(LOADING, (payload) => ({ payload }));
 const requestError = createAction(ERROR, (payload) => ({ payload }));
+
+// thunk
+export const __signUp = (payload) => async (dispatch, getState) => {
+  dispatch(requestLoading(true));
+  try {
+    // const response = await api.post("/signup",{username: payload.email ,
+    //  nickname:payload.nick ,
+    //  password:payload.pw ,
+    //   passwordCheck:payload.pwCheck });
+    // dispatch(signUp(response.data));
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
+// 이메일 중복확인
+export const __overlapEmail = (payload) => async (dispatch, getState) => {
+  dispatch(requestLoading(true));
+  try {
+    //payload 1234@1234 로 들어옴
+    const response = await api.post("/dupCheck", { username: payload });
+    dispatch(overlapEmail(response.data.result));
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
 
 //reducer
 export default function userReudcer(state = initialState, action = {}) {
@@ -24,6 +61,8 @@ export default function userReudcer(state = initialState, action = {}) {
     // return { ...state, loading: action.payload };
     case ERROR:
     // return { ...state, error: action.payload };
+    case OVERLAPEMAIL:
+      return { ...state, checkEmail: action.payload };
     default:
       return state;
   }
