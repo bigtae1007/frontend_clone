@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   body{
   }
   :root {
+    --aquaD : #00c2ca;
+    --aqua : #87e6e2;
     --black : #333333;
     --white: #ffffff;
     --grey : #dddddd;

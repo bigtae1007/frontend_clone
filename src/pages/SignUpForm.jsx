@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+//컴포넌트
+import Button from "../elem/Button";
+import Input from "../elem/Input";
+//모듈
 import { __overlapEmail, __signUp } from "../redux/modules/user";
 import { emailCheck, nickCheck } from "../shared/regExp";
 
@@ -15,9 +19,9 @@ const SignUpForm = () => {
     pwCheck: "",
   });
 
-  const [submitState, setSubmitState] = React.useState(false);
+  const [submitState, setSubmitState] = React.useState(true);
   const [emailCheckState, setEmailCheckState] = React.useState(false);
-  const [nickCheckState, setnickCheckState] = React.useState(false);
+  const [nickCheckState, setnickCheckState] = React.useState(true);
   const [pwCheckState, setpwCheckState] = React.useState(false);
 
   //input 값 변경
@@ -33,11 +37,11 @@ const SignUpForm = () => {
     } else {
       setEmailCheckState(false);
     }
-    if (nickCheck(signUpData.nick) && signUpData.nick > 4) {
-      setnickCheckState(true);
-    } else {
-      setnickCheckState(false);
-    }
+    // if (nickCheck(signUpData.nick) && signUpData.nick > 2) {
+    //   setnickCheckState(true);
+    // } else {
+    //   setnickCheckState(false);
+    // }
     if (signUpData.pw === signUpData.pwCheck && signUpData.pw !== "") {
       setpwCheckState(true);
     } else {
@@ -70,7 +74,7 @@ const SignUpForm = () => {
         <div>
           <label htmlFor="nick">이름</label>
           <WrapInput>
-            <input
+            <Input
               type="text"
               id="nick"
               placeholder="이름 입력"
@@ -84,7 +88,7 @@ const SignUpForm = () => {
         <div>
           <label htmlFor="email">이메일</label>
           <WrapInput>
-            <input
+            <Input
               type="email"
               id="email"
               placeholder="이메일 계정"
@@ -105,7 +109,7 @@ const SignUpForm = () => {
         <div>
           <label htmlFor="pw">비밀번호</label>
           <WrapInput>
-            <input
+            <Input
               type="password"
               id="pw"
               placeholder="비밀번호"
@@ -114,7 +118,7 @@ const SignUpForm = () => {
             />
           </WrapInput>
           <WrapInput>
-            <input
+            <Input
               type="password"
               id="pwCheck"
               placeholder="비밀번호 확인"
@@ -123,9 +127,14 @@ const SignUpForm = () => {
             />
           </WrapInput>
         </div>
-        <button type="submit" disabled={!submitState}>
+        <Button
+          size="size1"
+          color="white"
+          type="submit"
+          disabled={!submitState}
+        >
           완료
-        </button>
+        </Button>
       </WrapForm>
     </WrapSignUpForm>
   );
@@ -134,32 +143,44 @@ const SignUpForm = () => {
 export default SignUpForm;
 
 const WrapSignUpForm = styled.div`
-  margin: auto;
+  margin: 100px auto;
   width: 400px;
+  > h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  > p {
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+    color: var(--black);
+  }
 `;
 
 const WrapForm = styled.form`
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  > button:disabled {
+    background-color: var(--aqua);
+  }
 `;
 const WrapInput = styled.div`
   display: flex;
   height: 50px;
   border: 1px solid var(--grey);
-  > input {
-    margin: 0 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-  }
   > button {
     margin: 3px;
     width: 80px;
     border: none;
-    background-color: #1bd8d8;
+    background-color: var(--aquaD);
     color: var(--white);
     :disabled {
-      background-color: var(--grey);
+      background-color: var(--aqua);
       cursor: not-allowed;
     }
   }

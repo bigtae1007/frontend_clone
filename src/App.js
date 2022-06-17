@@ -12,7 +12,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/login" element={<LogIn />} />
-        <Route path="/signup/select" element={<SignUp />} />
+        <Route path="/signup/intro" element={<SignUp />} />
         <Route path="/signup" element={<SignUpForm />} />
       </Routes>
     </div>
