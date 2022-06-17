@@ -18,17 +18,16 @@ const requestLoading = createAction(LOADING, (payload) => ({ payload }));
 const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 //reducer
-export default handleActions(
-  {
-    [LOADING]: (state, action) => {
-      // return { ...state, loading: action.payload };
-    },
-    [ERROR]: (state, action) => {
-      // return { ...state, error: action.payload };
-    },
-  },
-  initialState
-);
+export default function userReudcer(state = initialState, action = {}) {
+  switch (action.type) {
+    case LOADING:
+    // return { ...state, loading: action.payload };
+    case ERROR:
+    // return { ...state, error: action.payload };
+    default:
+      return state;
+  }
+}
 
 const stateAction = {
   requestLoading,
