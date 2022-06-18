@@ -4,6 +4,7 @@ import styled from "styled-components";
 import useSlicePrice from "../../custom/slicePrice";
 import { __getLoadFundList } from "../../redux/modules/funding";
 import FundCard from "./FundCard";
+import FundListHeader from "./FundListHeader";
 
 const FundList = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const FundList = () => {
   }, []);
   return (
     <Wrap>
+      <FundListHeader />
       <WrapCardList>
         {fundList.map((v, l) => {
           return <FundCard key={l} fundData={v} />;
