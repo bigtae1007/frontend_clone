@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import GlobalStyle from "./elem/GlobalStyle";
-import SingUp from "./pages/SingUp";
 import Main from "./pages/Main";
 
 //컴포넌트
