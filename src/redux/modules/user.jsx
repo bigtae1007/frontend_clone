@@ -5,7 +5,7 @@ import { setCookie } from "../../shared/Cookie";
 const initialState = {
   userId: null,
   username: null,
-  checkEmail: true,
+  checkEmail: false,
   isLogin: false,
   loading: false,
   error: null,
@@ -25,8 +25,8 @@ const logIn = createAction(LOGIN, (payload) => ({ payload }));
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
 
 //loadinng / error action creator
-const requestLoading = createAction(LOADING, (payload) => ({ payload }));
-const requestError = createAction(ERROR, (payload) => ({ payload }));
+export const requestLoading = createAction(LOADING, (payload) => ({ payload }));
+export const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 // thunk
 //로그인
@@ -81,9 +81,9 @@ export const __overlapEmail = (payload) => async (dispatch, getState) => {
 export default function userReudcer(state = initialState, action = {}) {
   switch (action.type) {
     case LOADING:
-    // return { ...state, loading: action.payload };
+      return { ...state, loading: action.payload };
     case ERROR:
-    // return { ...state, error: action.payload };
+      return { ...state, error: action.payload };
     case OVERLAPEMAIL:
       return { ...state, checkEmail: action.payload };
     case LOGIN:
@@ -92,10 +92,3 @@ export default function userReudcer(state = initialState, action = {}) {
       return state;
   }
 }
-
-const stateAction = {
-  requestLoading,
-  requestError,
-};
-const userActions = {};
-export { stateAction, userActions };

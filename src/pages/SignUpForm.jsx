@@ -19,7 +19,7 @@ const SignUpForm = () => {
     pwCheck: "",
   });
 
-  const [submitState, setSubmitState] = React.useState(true);
+  const [submitState, setSubmitState] = React.useState(false);
   const [emailCheckState, setEmailCheckState] = React.useState(false);
   const [nickCheckState, setnickCheckState] = React.useState(false);
   const [pwCheckState, setpwCheckState] = React.useState(false);
@@ -37,7 +37,7 @@ const SignUpForm = () => {
     } else {
       setEmailCheckState(false);
     }
-    if (nickCheck(signUpData.nick) && signUpData.nick > 2) {
+    if (nickCheck(signUpData.nick)) {
       setnickCheckState(true);
     } else {
       setnickCheckState(false);
