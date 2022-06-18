@@ -33,7 +33,7 @@ const Slide = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper"
+      className="mySwiper1"
     >
       <SwiperSlide>
         <SlideImgWrap>
