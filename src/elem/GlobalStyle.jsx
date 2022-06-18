@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
   :root {
     --aquaD : #00c2ca;
-    --aqua : #87e6e2;
+    --aqua : #c0f8f5;
     --black : #333333;
     --white: #ffffff;
     --grey : #dddddd;
