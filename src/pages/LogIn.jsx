@@ -62,7 +62,7 @@ const LogIn = () => {
             <input type="checkbox" name="autoLogin" id="autoLogin" />
             <label htmlFor="autoLogin">아이디 저장</label>
           </div>
-          <p>아이디.비밀번호 찾기</p>
+          <p>아이디·비밀번호 찾기</p>
         </div>
         <Button size="size1" type="submit" disabled={!submitState}>
           로그인
