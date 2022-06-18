@@ -10,36 +10,37 @@ import banner6 from "../../images/banner6.png";
 const DetailContent = ({ content, img, goal, expDate }) => {
   const slicePrice = useSlicePrice(goal);
   return (
-    <div>
-      <div>
-        <WrapMainContent>
-          <img src={img} alt="" />
-          <p>
-            당신의 일상을 보다 편리하게 만들어 줄 아웃도어 잇템, 라이프케어
-            디바이스 3종을 소개합니다
-          </p>
-        </WrapMainContent>
-        <GoalPriceBox>
-          <h4>목표 금액 {slicePrice} 원 </h4>
-          <h4>펀딩 기간 2022.06.17 ~ 2022.07.04 </h4>
-          <p>
-            100% 이상 모이면 펀딩이 성공되며, 펀딩 마감일까지 목표 금액이 100%
-            모이지 않으면 결제가 진행되지 않습니다.
-          </p>
-        </GoalPriceBox>
-        <ImgVeiw src={banner4} alt="#" />
-        <HText>프로젝트 스토리</HText>
-        <ImgVeiw src={banner6} alt="#" />
-        <DetailContentMain content={content} />
-      </div>
-    </div>
+    <WrapContent>
+      <WrapMainContent>
+        <img src={img} alt="" />
+        <p>
+          당신의 일상을 보다 편리하게 만들어 줄 아웃도어 잇템, 라이프케어
+          디바이스 3종을 소개합니다
+        </p>
+      </WrapMainContent>
+      <GoalPriceBox>
+        <h4>목표 금액 {slicePrice} 원 </h4>
+        <h4>펀딩 기간 2022.06.17 ~ 2022.07.04 </h4>
+        <p>
+          100% 이상 모이면 펀딩이 성공되며, 펀딩 마감일까지 목표 금액이 100%
+          모이지 않으면 결제가 진행되지 않습니다.
+        </p>
+      </GoalPriceBox>
+      <ImgVeiw src={banner4} alt="#" />
+      <HText>프로젝트 스토리</HText>
+      <ImgVeiw src={banner6} alt="#" />
+      <DetailContentMain content={content} />
+    </WrapContent>
   );
 };
 
 export default DetailContent;
 
+const WrapContent = styled.div`
+  width: 40%;
+`;
+
 const WrapMainContent = styled.div`
-  max-width: 630px;
   > img {
     width: 100%;
   }
@@ -51,7 +52,6 @@ const WrapMainContent = styled.div`
 const GoalPriceBox = styled.div`
   margin: 30px 0;
   padding: 10px;
-  max-width: 630px;
   height: 100px;
   background-color: var(--aqua);
   border-radius: 10px;

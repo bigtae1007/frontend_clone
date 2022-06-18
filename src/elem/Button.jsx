@@ -29,11 +29,14 @@ const Btn = styled.button`
     background-color: var(--aqua);
     cursor: not-allowed;
   }
+  :hover {
+    background-color: #03a1a7;
+  }
 `;
 
 export const size1 = css`
   width: 100%;
-  height: 60px;
+  height: 50px;
   font-size: 1.2rem;
   letter-spacing: 3px;
 `;

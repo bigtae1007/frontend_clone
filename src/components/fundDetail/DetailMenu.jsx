@@ -26,12 +26,15 @@ const WrapMenu = styled.div`
   > div {
     cursor: pointer;
     padding: 10px 0;
-    font-size: 16px;
+    font-size: 14px;
     > span {
       position: relative;
       top: -2px;
       color: #00b2b2;
       font-size: 12px;
     }
+  }
+  div:first-child {
+    border-bottom: 2px solid var(--aquaD);
   }
 `;

@@ -40,5 +40,9 @@ const DetailMain = () => {
 export default DetailMain;
 
 const WrapContent = styled.div`
+  margin: 100px 0;
   display: flex;
+  justify-content: center;
+  gap: 2%;
+  width: 100%;
 `;

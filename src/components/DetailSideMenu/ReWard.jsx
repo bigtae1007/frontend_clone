@@ -5,7 +5,6 @@ import RewardCard from "./RewardCard";
 
 const ReWard = () => {
   const rewardList = useSelector((state) => state.reward.reward);
-  console.log(rewardList);
   return (
     <WrapRewardCard>
       <p>리워드 선택</p>

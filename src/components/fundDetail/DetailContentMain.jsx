@@ -17,5 +17,4 @@ const WrapImg = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 630px;
 `;

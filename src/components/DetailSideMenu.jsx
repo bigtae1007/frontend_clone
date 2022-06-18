@@ -110,8 +110,7 @@ const DetailSideMenu = ({
 
 export default DetailSideMenu;
 const WrapSlideMenu = styled.div`
-  width: 100%;
-  max-width: 284px;
+  width: 284px;
 
   h2 {
     font-size: 24px;
@@ -119,6 +118,7 @@ const WrapSlideMenu = styled.div`
 `;
 
 const SuccessBar = styled.div`
+  width: 284px;
   margin: 20px 0;
   height: 3px;
   background-color: var(--grey);
@@ -131,6 +131,7 @@ const SuccessBar = styled.div`
 `;
 
 const WrapText = styled.div`
+  width: 284px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -147,12 +148,16 @@ const WrapBtn = styled.div`
   display: flex;
   gap: 10px;
   margin: 10px 0 20px;
+  width: 284px;
   button {
     width: 100%;
     height: 45px;
     background-color: var(--white);
     border: 1px solid var(--grey);
     border-radius: 5px;
+    :hover {
+      background-color: var(--grey);
+    }
   }
 `;
 const MakerInfo = styled.div`
@@ -223,13 +228,16 @@ const PercentDiv = styled.div`
 `;
 
 const InfoQuestion = styled.button`
-  margin: 20px 0 10px;
+  margin: 20px 0;
   margin-right: 20px;
   width: 50%;
   height: 40px;
   background-color: var(--white);
   border: 1px solid var(--grey);
   border-radius: 10px;
+  :hover {
+    background-color: var(--grey);
+  }
 `;
 const ImgVeiw = styled.img`
   margin: 10px 0;
