@@ -13,6 +13,7 @@ const initialState = {
 //action
 const SIGNUP = "user/CREATE_SIGNUP";
 const LOGIN = "user/LOAD_LOGIN";
+const CHECKLOGIN = "user/CHECK_LOGIN";
 const OVERLAPEMAIL = "user/CHECK_OVERLAPEMAIL";
 //state action
 const LOADING = "user/LOADING_STATE";
@@ -22,6 +23,7 @@ const ERROR = "user/ERROR_STATE";
 
 const signUp = createAction(SIGNUP, (payload) => ({ payload }));
 const logIn = createAction(LOGIN, (payload) => ({ payload }));
+const checkLogin = createAction(CHECKLOGIN, (payload) => ({ payload }));
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
 
 //loadinng / error action creator
@@ -29,6 +31,19 @@ export const requestLoading = createAction(LOADING, (payload) => ({ payload }));
 export const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 // thunk
+
+//로그인 체크
+export const __checkLogin = () => async (dispatch, getState) => {
+  dispatch(requestLoading(true));
+  try {
+    const response = api.get("/loginCheck");
+    // dispatch(checkLogin())
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
 //로그인
 export const __logIn = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
