@@ -36,6 +36,7 @@ const FundCard = ({ fundData }) => {
 export default FundCard;
 const WrapCard = styled.div`
   min-width: 210px;
+  width: 100%;
   min-height: auto;
   max-width: 310px;
   img {
@@ -54,11 +55,12 @@ const WrapText = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 17px;
   }
   div > span {
     padding: 0 5px;
     color: var(--dGrey);
-    font-size: 0.9rem;
+    font-size: 13px;
     font-weight: 600;
   }
   div > span:first-child {
@@ -86,7 +88,7 @@ const GoalPrice = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 13px;
     font-weight: 600;
     color: var(--dGrey);
   }
@@ -94,6 +96,6 @@ const GoalPrice = styled.div`
     margin-right: 5px;
     color: var(--aquaD);
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 17px;
   }
 `;
