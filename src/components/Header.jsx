@@ -84,11 +84,11 @@ const Header = () => {
       </HeaderBox>
       <SubNavWrap>
         <SubNavList>
-          <SubNavBorder>
+          <SubNav>
             <Link to="">
-              <SubText>펀딩홈</SubText>
+              <SubNavBorder>펀딩홈</SubNavBorder>
             </Link>
-          </SubNavBorder>
+          </SubNav>
           <SubNav>
             <Link to="">
               <SubText>카테고리</SubText>
@@ -108,11 +108,9 @@ const Header = () => {
 export default Header;
 
 const HeaderWrap = styled.div`
-  width: 100%;
-  width: 1440px;
+  max-width: 1440px;
   padding: 0 80px;
   margin: 0 auto;
-  height: 56px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -121,6 +119,7 @@ const HeaderWrap = styled.div`
   border-bottom: 1px solid #f0f2f5;
 `;
 const HeaderBox = styled.header`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -140,23 +139,27 @@ const SubNavList = styled.ul`
   align-items: center;
   gap: 24px;
   font-size: 17px;
-  font-weight: 700;
+  font-weight: bold;
   color: #1d2129;
 `;
 const SubNav = styled.li`
   width: 120px;
+  height: 35px;
   text-align: center;
-  padding: 10px;
 `;
 const SubText = styled.span`
-  line-height: 35px;
-  height: 35px;
-  display: block;
+  height: 100%;
+  display: inline-block;
+  color: #60656a;
+
+  border-bottom: 3px solid transparent;
 `;
-const SubNavBorder = styled.li`
-  border-bottom: 3px solid #1d2129;
-  box-sizing: border-box;
+const SubNavBorder = styled.span`
+  height: 100%;
+  display: inline-block;
+  text-align: center;
   font-size: 17px;
+  border-bottom: 3px solid #1d2129;
 `;
 const NavList = styled.ul`
   display: flex;
