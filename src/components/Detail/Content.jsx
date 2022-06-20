@@ -6,19 +6,17 @@ import Comment from "./Comment";
 import CommentLogin from "./CommentLogin";
 
 const Content = () => {
-  const data = useSelector((state) => state.list);
-  console.log(data);
   return (
     <>
-      <Flex key={data.id}>
+      <Flex>
         <div>
           <ContentImg src="https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20220320224907662_23473161.jpg/wadiz/thumbnail/36/format/jpg/quality/95/optimize/" />
         </div>
         <FlexRight>
           <Username>
-            ninkname<Text>{data?.category} · 6시간 전</Text>
+            ninkname<Text> · 6시간 전</Text>
           </Username>
-          <ContentText>{data?.content}</ContentText>
+          <ContentText></ContentText>
           <Button>답글</Button>
           <CommentWrap>
             <CommentImg src={userimg} />

@@ -6,7 +6,6 @@ const LOAD_POST = "post/LOAD_POST";
 const ADD_POST = "post/ADD_POST";
 const UPDATE_POST = "post/UPDATE_POST";
 const DELETE_POST = "post/DELETE_POST";
-
 const GET_POST_REQUEST = "post/GET_POST_REQUEST";
 const GET_POST_ERROR = "post/GET_POST_ERROR";
 
