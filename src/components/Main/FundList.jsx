@@ -2,15 +2,19 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import useSlicePrice from "../../custom/slicePrice";
-import { __getLoadFundList } from "../../redux/modules/funding";
+//컴포넌트
 import FundCard from "./FundCard";
 import FundListHeader from "./FundListHeader";
+//모듈
+import { __getLoadFundList } from "../../redux/modules/funding";
+import { __checkLogin } from "../../redux/modules/user";
 
 const FundList = () => {
   const dispatch = useDispatch();
   const fundList = useSelector((state) => state.funding.fund);
 
   React.useEffect(() => {
+    dispatch(__checkLogin());
     dispatch(__getLoadFundList());
   }, []);
   return (

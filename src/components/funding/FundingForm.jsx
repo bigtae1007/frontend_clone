@@ -38,7 +38,7 @@ const FundingForm = ({ fundReward, title }) => {
         });
       }
     }
-    // const responst = dispatch(__funding({ payload, id: id }));
+    dispatch(__funding({ payload, id: id }));
   };
   //비공개 변경하기
   const changeHidden = (e) => {
