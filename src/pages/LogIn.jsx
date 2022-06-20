@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../elem/Button";
 import Input from "../elem/Input";
 //컴포넌트
 import SNSButton from "../elem/SNSButton";
-
 //모듈
 import { __logIn } from "../redux/modules/user";
 import { emailCheck } from "../shared/regExp";
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loginState = useSelector((state) => state.user.isLogin);
   const [logInData, setLogInData] = useState({ email: "", password: "" });
-  const [submitState, setSubmitState] = useState(false);
+  const [submitState, setSubmitState] = useState(true);
 
   const changeInput = (e) => {
     setLogInData({ ...logInData, [e.target.type]: e.target.value });
@@ -35,6 +35,12 @@ const LogIn = () => {
     }
   }, [logInData]);
 
+  React.useEffect(() => {
+    if (loginState) {
+      alert("로그인 완료");
+      navigate("/");
+    }
+  }, [loginState]);
   return (
     <WrapLogin>
       <h2>로그인</h2>

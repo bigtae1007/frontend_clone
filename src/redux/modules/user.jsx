@@ -6,6 +6,7 @@ const initialState = {
   userId: null,
   username: null,
   checkEmail: false,
+  signup: false,
   isLogin: false,
   loading: false,
   error: null,
@@ -21,7 +22,7 @@ const ERROR = "user/ERROR_STATE";
 
 // action creator
 
-const signUp = createAction(SIGNUP, (payload) => ({ payload }));
+const signUp = createAction(SIGNUP, (payload) => payload);
 const logIn = createAction(LOGIN, (payload) => ({ payload }));
 const checkLogin = createAction(CHECKLOGIN, (payload) => ({ payload }));
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
@@ -36,9 +37,11 @@ export const requestError = createAction(ERROR, (payload) => ({ payload }));
 export const __checkLogin = () => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    const response = api.get("/loginCheck");
-    // dispatch(checkLogin())
+    const response = await api.get("/test");
+    console.log(response);
+    dispatch(checkLogin(true));
   } catch (error) {
+    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -52,11 +55,15 @@ export const __logIn = (payload) => async (dispatch, getState) => {
       username: payload.email,
       password: payload.password,
     });
+    console.log(response);
     setCookie("token", response.headers.authorization, 7);
+    localStorage.setItem("id", payload.email);
     if ((response.status = 200)) {
       dispatch(logIn(payload.email));
+      console.log("로그인");
     }
   } catch (error) {
+    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -71,7 +78,8 @@ export const __signUp = (payload) => async (dispatch, getState) => {
       nickname: payload.nick,
       password: payload.pw,
     });
-    // dispatch(signUp(response.data));
+    dispatch(signUp(true));
+    console.log(response.data);
   } catch (error) {
     dispatch(requestError(error));
   } finally {
@@ -82,10 +90,13 @@ export const __signUp = (payload) => async (dispatch, getState) => {
 export const __overlapEmail = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
+    console.log(payload);
     //payload 1234@1234 로 들어옴
+    console.log(payload);
     const response = await api.post("/dupCheck", { username: payload });
     dispatch(overlapEmail(response.data.result));
   } catch (error) {
+    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -99,6 +110,8 @@ export default function userReudcer(state = initialState, action = {}) {
       return { ...state, loading: action.payload };
     case ERROR:
       return { ...state, error: action.payload };
+    case SIGNUP:
+      return { ...state, signup: true };
     case OVERLAPEMAIL:
       return { ...state, checkEmail: action.payload };
     case LOGIN:

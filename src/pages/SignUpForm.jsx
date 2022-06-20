@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 //컴포넌트
 import Button from "../elem/Button";
 import Input from "../elem/Input";
@@ -10,8 +11,10 @@ import { emailCheck, nickCheck } from "../shared/regExp";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 이메일 중복확인 상태값
   const overlapEmail = useSelector((state) => state.user.checkEmail);
+  const signupState = useSelector((state) => state.user.signup);
   const [signUpData, setSignUpData] = React.useState({
     nick: "",
     email: "",
@@ -54,6 +57,12 @@ const SignUpForm = () => {
       setSubmitState(true);
     }
   }, [emailCheckState, nickCheckState, pwCheckState]);
+  React.useEffect(() => {
+    if (signupState) {
+      alert("회원가입 완료 ");
+      navigate("/login");
+    }
+  }, [signupState]);
   // 중복 확인
   const overlapEmailEvent = () => {
     dispatch(__overlapEmail(signUpData.email));
