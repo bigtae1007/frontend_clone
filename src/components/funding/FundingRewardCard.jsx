@@ -15,6 +15,8 @@ const FundingRewardCard = ({
 
   const slicePrice = useSlicePrice(String(reward.price));
   const slicedeliver = useSlicePrice(String(reward.deliveryFee));
+  const newContent = reward.rewardContent.split("/n");
+  console.log(newContent);
   // 체크 상태 확인
   const changeCheck = (e) => {
     if (e.target.checked) {
@@ -68,7 +70,13 @@ const FundingRewardCard = ({
             </span>
           )}
         </p>
-        <pre style={{ marginBottom: "20px" }}>{reward.rewardContent}</pre>
+        {newContent.map((v, l) => {
+          return (
+            <pre key={l} style={{ marginBottom: "20px" }}>
+              {v}
+            </pre>
+          );
+        })}
         <span style={{ marginBottom: "5px" }}>
           배송비 {slicedeliver}원 | 리워드 제공 예상일 : 2022년 08월 말 (21~30)
           예정
