@@ -4,18 +4,18 @@ import { NavLink } from "react-router-dom";
 const SubNavWrap = () => {
   return (
     <SubNavList>
-      <NavLink to="/" activeClassName="current" exact>
+      <NavLink to="/">
         <li>
           <span>펀딩홈</span>
         </li>
       </NavLink>
-      <NavLink to="/" activeClassName="current" exact>
+      <NavLink to="/">
         <li>
           <span>카테고리</span>
         </li>
       </NavLink>
 
-      <NavLink to="/" activeClassName="current" exact>
+      <NavLink to="/">
         <li>
           <span>글로벌·앵콜</span>
         </li>
@@ -41,13 +41,6 @@ const SubNavList = styled.ul`
       height: 100%;
       display: inline-block;
       color: #60656a;
-    }
-  }
-  > .current {
-    > li {
-      > span {
-        border-bottom: 3px solid #1d2129;
-      }
     }
   }
 `;
