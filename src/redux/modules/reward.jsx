@@ -40,11 +40,12 @@ const initialState = {
 };
 //action
 const LOAD = "funding/READ_LOAD";
+const FUNDING = "funding/UPDATE_FUNDING";
 
 // action creator
 
 const getLoad = createAction(LOAD, (payload) => ({ payload }));
-
+const funding = createAction(FUNDING, (payload) => ({ payload }));
 //loadinng / error action creator
 
 // thunk
@@ -63,10 +64,29 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
   }
 };
 
+// 펀딩하기
+export const __funding = (payload) => async (dispatch, getState) => {
+  //
+  console.log(payload);
+  dispatch(requestLoading(true));
+  try {
+    const response = await api.post(`/api/fund/${payload.id}`, payload.payload);
+    if ((response.status = 200)) {
+      // dispatch(funding(response.data));
+    }
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
+
 //reducer
 export default function rewardReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
+      return { ...state, fund: action.payload };
+    case FUNDING:
       return { ...state, fund: action.payload };
     default:
       return state;
