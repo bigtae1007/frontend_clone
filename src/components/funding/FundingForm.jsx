@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 //컴포넌트
 import FundingRewardCard from "./FundingRewardCard";
@@ -9,7 +10,6 @@ import checkState2 from "../../images/checkState2.png";
 import { useDispatch } from "react-redux";
 //모듈
 import { __funding } from "../../redux/modules/reward";
-import { useParams } from "react-router-dom";
 
 const FundingForm = ({ fundReward, title }) => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const FundingForm = ({ fundReward, title }) => {
         });
       }
     }
-    const responst = dispatch(__funding({ payload, id: id }));
+    // const responst = dispatch(__funding({ payload, id: id }));
   };
   //비공개 변경하기
   const changeHidden = (e) => {

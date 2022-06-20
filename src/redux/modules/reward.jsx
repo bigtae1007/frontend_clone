@@ -50,12 +50,12 @@ const funding = createAction(FUNDING, (payload) => ({ payload }));
 
 // thunk
 // 펀드 리스트 받기
-export const __getLoadFundList = () => async (dispatch, getState) => {
+export const __getLoadRewardList = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    const response = await api.get("/api/home");
+    const response = await api.get(`/api/fund/${payload}/rewards`);
     if ((response.status = 200)) {
-      // dispatch(getLoad(response.data));
+      dispatch(getLoad(response.data));
     }
   } catch (error) {
     dispatch(requestError(error));
@@ -67,7 +67,6 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
 // 펀딩하기
 export const __funding = (payload) => async (dispatch, getState) => {
   //
-  console.log(payload);
   dispatch(requestLoading(true));
   try {
     const response = await api.post(`/api/fund/${payload.id}`, payload.payload);
