@@ -4,9 +4,7 @@ import styled from "styled-components";
 const DetailContentMain = ({ content }) => {
   return (
     <WrapImg>
-      {content.map((v, l) => {
-        return <img key={l} src={v} alt="상세 정보 이미지" />;
-      })}
+      <img src={content} alt="상세 정보 이미지" />;
     </WrapImg>
   );
 };
