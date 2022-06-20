@@ -3,8 +3,8 @@ import styled from "styled-components";
 import useSlicePrice from "../../custom/slicePrice";
 
 const RewardCard = ({ rewardData }) => {
-  const slicePrice = useSlicePrice(rewardData.price);
-  const slicedeliver = useSlicePrice(rewardData.deliveryFee);
+  const slicePrice = useSlicePrice(String(rewardData.price));
+  const slicedeliver = useSlicePrice(String(rewardData.deliveryFee));
   return (
     <WrapReWard>
       <h3 style={{ marginBottom: "10px" }}>{slicePrice}원 펀딩</h3>

@@ -53,10 +53,12 @@ export const __getLoadRewardList = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
     const response = await api.get(`/api/fund/${payload}/rewards`);
+    console.log(response);
     if ((response.status = 200)) {
       dispatch(getLoad(response.data));
     }
   } catch (error) {
+    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -70,9 +72,11 @@ export const __funding = (payload) => async (dispatch, getState) => {
   try {
     const response = await api.post(`/api/fund/${payload.id}`, payload.payload);
     if ((response.status = 200)) {
-      // dispatch(funding(response.data));
+      console.log(response);
+      dispatch(funding(response.data));
     }
   } catch (error) {
+    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -83,7 +87,8 @@ export const __funding = (payload) => async (dispatch, getState) => {
 export default function rewardReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      return { ...state, fund: action.payload };
+      console.log(action.payload.payload);
+      return { ...state, reward: action.payload.payload };
     case FUNDING:
       return { ...state, fund: action.payload };
     default:

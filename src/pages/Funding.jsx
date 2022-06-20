@@ -16,7 +16,7 @@ const Funding = () => {
   const fundReward = useSelector((state) => state.reward.reward);
 
   useEffect(() => {
-    // dispatch(__getLoadRewardList(id));
+    dispatch(__getLoadRewardList(id));
   }, []);
   return (
     <WrapFunding>

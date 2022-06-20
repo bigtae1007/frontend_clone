@@ -13,8 +13,8 @@ const FundingRewardCard = ({
   const [countState, setCountState] = useState(false);
   const [count, setCount] = useState(1);
 
-  const slicePrice = useSlicePrice(reward.price);
-  const slicedeliver = useSlicePrice(reward.deliveryFee);
+  const slicePrice = useSlicePrice(String(reward.price));
+  const slicedeliver = useSlicePrice(String(reward.deliveryFee));
   // 체크 상태 확인
   const changeCheck = (e) => {
     if (e.target.checked) {

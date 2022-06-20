@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 // 컴포넌트
 import Button from "../elem/Button";
 // 훅
@@ -11,6 +12,7 @@ import banner1 from "../images/banner1.png";
 import banner2 from "../images/banner2.png";
 import point from "../images/point.png";
 import partner from "../images/partner.png";
+import { __getLoadRewardList } from "../redux/modules/reward";
 
 const DetailSideMenu = ({
   goal,
@@ -21,9 +23,14 @@ const DetailSideMenu = ({
   likeCheck,
   likeCount,
 }) => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const successPercent = parseInt((currentFund / goal) * 100);
   const slicePrice = useSlicePrice(String(currentFund));
+
+  useEffect(() => {
+    dispatch(__getLoadRewardList(id));
+  }, []);
 
   return (
     <WrapSlideMenu>
