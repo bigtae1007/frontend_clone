@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { api } from "../../shared/api";
-import { setCookie } from "../../shared/Cookie";
+import { setCookie, deleteCookie } from "../../shared/Cookie";
 // initialState
 const initialState = {
   userId: null,
@@ -15,6 +15,7 @@ const initialState = {
 const SIGNUP = "user/CREATE_SIGNUP";
 const LOGIN = "user/LOAD_LOGIN";
 const CHECKLOGIN = "user/CHECK_LOGIN";
+const LOGOUT = "user/DELETE_LOGOUT";
 const OVERLAPEMAIL = "user/CHECK_OVERLAPEMAIL";
 //state action
 const LOADING = "user/LOADING_STATE";
@@ -25,6 +26,7 @@ const ERROR = "user/ERROR_STATE";
 const signUp = createAction(SIGNUP, (payload) => payload);
 const logIn = createAction(LOGIN, (payload) => ({ payload }));
 const checkLogin = createAction(CHECKLOGIN, (payload) => ({ payload }));
+const logOut = createAction(LOGOUT, (payload) => payload);
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
 
 //loadinng / error action creator
@@ -38,8 +40,9 @@ export const __checkLogin = () => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
     const response = await api.get("/test");
-    console.log(response);
-    dispatch(checkLogin(true));
+    if (response.status === 200) {
+      dispatch(checkLogin(true));
+    }
   } catch (error) {
     console.log(error);
     dispatch(requestError(error));
@@ -69,6 +72,13 @@ export const __logIn = (payload) => async (dispatch, getState) => {
     dispatch(requestLoading(false));
   }
 };
+//로그 아웃
+export const __logOut = () => (dispatch, getState) => {
+  deleteCookie("token");
+  localStorage.removeItem("id");
+  alert("정상 로그아웃 됐습니다.");
+  dispatch(logOut());
+};
 // 회원가입
 export const __signUp = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
@@ -79,7 +89,6 @@ export const __signUp = (payload) => async (dispatch, getState) => {
       password: payload.pw,
     });
     dispatch(signUp(true));
-    console.log(response.data);
   } catch (error) {
     dispatch(requestError(error));
   } finally {
@@ -90,7 +99,6 @@ export const __signUp = (payload) => async (dispatch, getState) => {
 export const __overlapEmail = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    console.log(payload);
     //payload 1234@1234 로 들어옴
     console.log(payload);
     const response = await api.post("/dupCheck", { username: payload });
@@ -116,6 +124,10 @@ export default function userReudcer(state = initialState, action = {}) {
       return { ...state, checkEmail: action.payload };
     case LOGIN:
       return { ...state, isLogin: true, userId: action.payload.payload };
+    case LOGOUT:
+      return { ...state, isLogin: false, userId: "" };
+    case CHECKLOGIN:
+      return { ...state, isLogin: true };
     default:
       return state;
   }

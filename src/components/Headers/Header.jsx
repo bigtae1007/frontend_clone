@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import search from "../../images/search.png";
 import NavLists from "./NavLists";
 import SubNavWrap from "../Headers/SubNavWrap";
+import { useDispatch, useSelector } from "react-redux";
+import { __logOut, __checkLogin } from "../../redux/modules/user";
 const Header = () => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.user.isLogin);
+
+  const logOut = () => {
+    dispatch(__logOut());
+  };
+  // 로그인 상태 확인
+  useEffect(() => {
+    dispatch(__checkLogin());
+  }, []);
   return (
     <HeaderWrap>
       <HeaderBox>
@@ -38,12 +50,18 @@ const Header = () => {
             </Form>
           </div>
           <div>
-            <Link to="/login">
-              <Button>로그인</Button>
-            </Link>
-            <Link to="/signup/intro">
-              <Button>회원가입</Button>
-            </Link>
+            {isLogin ? (
+              <Button onClick={logOut}>로그아웃</Button>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button>로그인</Button>
+                </Link>
+                <Link to="/signup/intro">
+                  <Button>회원가입</Button>
+                </Link>
+              </>
+            )}
           </div>
           <div>
             <ProjectButton>프로젝트 오픈 신청</ProjectButton>
