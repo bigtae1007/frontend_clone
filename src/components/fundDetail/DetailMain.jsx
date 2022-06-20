@@ -1,12 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+// 컴포넌트
 import DetailContent from "./DetailContent";
 import DetailHeader from "./DetailHeader";
 import DetailMenu from "./DetailMenu";
 import DetailSideMenu from "../DetailSideMenu";
+import { __getLoadDetailFund } from "../../redux/modules/funding";
 
 const DetailMain = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  // 세부정보 호출
+  useEffect(() => {
+    dispatch(__getLoadDetailFund(id));
+  }, []);
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
   return (
     <div>

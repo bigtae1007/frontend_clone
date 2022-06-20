@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 
 import { api } from "../../shared/api";
-import { setCookie } from "../../shared/Cookie";
 import { requestLoading, requestError } from "./user";
 // initialState
 const initialState = {

@@ -19,35 +19,30 @@ const initialState = {
     },
   ],
   fundDetail: {
-    title: "여행필수품[주머니에 쏙~ 초소형]",
+    title: "완벽한 겉 방수, 속 쾌적! 비오는 날엔 항상 [포시즌 레인코트&스커트]",
+    subTitle:
+      "방수 되는데 안 꿉꿉한 레인코트는 처음일 거에요. 심지어 입고 출근해도 우비인지 모를 완벽한 디자인까지. 사계절 내내 우산, 장화보다 더 확실하게 비를 피하는 필수템을 소개합니다.",
     imageURL:
-      "https://cdn.wadiz.kr/wwwwadiz/green001/2022/0527/20220527124158967_145740.jpg/wadiz/format/jpg/quality/80/optimize",
-    category: "음식",
-    fundingGoal: "10000",
-    currentFund: "1000000",
-    likeCount: 100,
-    likeCheck: true,
-    supporters: "회사",
-    supportersCount: "100",
-    expDate: "11d일",
-    content: [
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0526/20220526011156282_91.jpg/wadiz/format/jpg/quality/80/optimize",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0525/20220525202435306_40.jpg/wadiz/format/jpg/quality/80/optimize",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0526/20220526011210636_97.gif",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0614/20220614121548986_46.gif",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0525/20220525182844737_63.jpeg/wadiz/format/jpg/quality/80/optimize",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0526/20220526192156417_26.jpeg/wadiz/format/jpg/quality/80/optimize",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0526/20220526011901857_69.jpeg/wadiz/format/jpg/quality/80/optimize",
-      "https://cdn.wadiz.kr/ft/images/green001/2022/0525/20220525215111392_25.jpeg/wadiz/format/jpg/quality/80/optimize",
-    ],
+      "https://www.fashionbiz.co.kr/images/AT/AR/%EC%95%8C%ED%8C%8C%EC%84%AC%EC%9C%A0600.JPG",
+    category: "패션·잡화",
+    fundingGoal: "10000000",
+    currentFund: "111000",
+    likeCount: 115,
+    likeCheck: false,
+    supporters: "222",
+    expDate: "2022.07.5-2022.07.11",
+    content:
+      "https://btaeredux.s3.ap-northeast-2.amazonaws.com/%EB%B9%84%EC%98%B7-cutout.png",
   },
 };
 //action
 const LOAD = "funding/READ_LOAD";
-
+const LOADDETAIL = "funding/READ_LOADDETAIL";
 // action creator
 
 const getLoad = createAction(LOAD, (payload) => ({ payload }));
+const getLoadDetail = createAction(LOADDETAIL, (payload) => payload);
+// const getLoadDetail = createAction();
 
 //loadinng / error action creator
 
@@ -58,7 +53,21 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
   try {
     const response = await api.get("/api/home");
     if ((response.status = 200)) {
-      // dispatch(getLoad(response.data));
+      dispatch(getLoad(response.data));
+    }
+  } catch (error) {
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
+  }
+};
+// 세부정보 받기
+export const __getLoadDetailFund = (payload) => async (dispatch, getState) => {
+  dispatch(requestLoading(true));
+  try {
+    const response = await api.get(`/api/fund/${payload}`);
+    if ((response.status = 200)) {
+      dispatch(getLoadDetail(response.data));
     }
   } catch (error) {
     dispatch(requestError(error));
@@ -71,7 +80,9 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
 export default function fundingReudcer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      return { ...state, fund: action.payload };
+      return { ...state, fund: action.payload.payload };
+    case LOADDETAIL:
+      return { ...state, fundDetail: action.payload };
     default:
       return state;
   }

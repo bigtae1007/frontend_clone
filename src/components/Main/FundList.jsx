@@ -11,7 +11,7 @@ const FundList = () => {
   const fundList = useSelector((state) => state.funding.fund);
 
   React.useEffect(() => {
-    // dispatch(__getLoadFundList());
+    dispatch(__getLoadFundList());
   }, []);
   return (
     <Wrap>

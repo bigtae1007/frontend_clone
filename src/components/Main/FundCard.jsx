@@ -1,34 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 // 커스텀
 import useSlicePrice from "../../custom/slicePrice";
 const FundCard = ({ fundData }) => {
-  const newPrice = useSlicePrice(fundData.currentFund);
+  const newPrice = useSlicePrice(String(fundData.currentFund));
   const successPercent = parseInt(
     (fundData.currentFund / fundData.fundingGoal) * 100
   );
   return (
     <WrapCard>
-      <img src={fundData.imageURL} alt="메인사진" />
-      <WrapText>
-        <h3>{fundData.title}</h3>
-        <div>
-          <span> {fundData.category} </span>
-          <span>{fundData.supporters}</span>
-        </div>
-      </WrapText>
-      <SuccessBar percent={successPercent}>
-        <div></div>
-      </SuccessBar>
-      <GoalPrice>
-        <div>
-          <span>{successPercent}%</span>
-        </div>
-        <div>
-          <span> · {newPrice}원</span>
-          <span>{fundData.expDate}남음</span>
-        </div>
-      </GoalPrice>
+      <Link to={`/fund/detail/story/${fundData.fundId}`}>
+        <img src={fundData.imageURL} alt="메인사진" />
+        <WrapText>
+          <h3>{fundData.title}</h3>
+          <div>
+            <span> {fundData.category} </span>
+            <span>{fundData.supporters}</span>
+          </div>
+        </WrapText>
+        <SuccessBar percent={successPercent}>
+          <div></div>
+        </SuccessBar>
+        <GoalPrice>
+          <div>
+            <span>{successPercent}%</span>
+          </div>
+          <div>
+            <span> · {newPrice}원</span>
+            <span>{fundData.expDate}남음</span>
+          </div>
+        </GoalPrice>
+      </Link>
     </WrapCard>
   );
 };

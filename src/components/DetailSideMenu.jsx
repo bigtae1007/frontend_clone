@@ -22,9 +22,8 @@ const DetailSideMenu = ({
   likeCount,
 }) => {
   const { id } = useParams();
-  console.log(id);
   const successPercent = parseInt((currentFund / goal) * 100);
-  const slicePrice = useSlicePrice(currentFund);
+  const slicePrice = useSlicePrice(String(currentFund));
 
   return (
     <WrapSlideMenu>

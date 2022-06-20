@@ -8,7 +8,7 @@ import useSlicePrice from "../../custom/slicePrice";
 import banner4 from "../../images/banner4.png";
 import banner6 from "../../images/banner6.png";
 const DetailContent = ({ content, img, goal, expDate }) => {
-  const slicePrice = useSlicePrice(goal);
+  const slicePrice = useSlicePrice(String(goal));
   return (
     <WrapContent>
       <WrapMainContent>
