@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link, useParams } from "react-router-dom";
 // 컴포넌트
 import Button from "../elem/Button";
 // 훅
@@ -20,6 +21,8 @@ const DetailSideMenu = ({
   likeCheck,
   likeCount,
 }) => {
+  const { id } = useParams();
+  console.log(id);
   const successPercent = parseInt((currentFund / goal) * 100);
   const slicePrice = useSlicePrice(currentFund);
 
@@ -40,9 +43,11 @@ const DetailSideMenu = ({
           {supportersCount} <span> 명의 서포터</span>
         </h3>
       </WrapText>
-      <Button size="size1" color="white">
-        펀딩하기
-      </Button>
+      <Link to={`/fund/funding/${id}`}>
+        <Button size="size1" color="white">
+          펀딩하기
+        </Button>
+      </Link>
       <WrapBtn>
         <button>
           <span>하트</span>
