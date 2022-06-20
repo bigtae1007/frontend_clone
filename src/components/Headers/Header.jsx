@@ -38,8 +38,12 @@ const Header = () => {
             </Form>
           </div>
           <div>
-            <Button>로그인</Button>
-            <Button>회원가입</Button>
+            <Link to="/login">
+              <Button>로그인</Button>
+            </Link>
+            <Link to="/signup/intro">
+              <Button>회원가입</Button>
+            </Link>
           </div>
           <div>
             <ProjectButton>프로젝트 오픈 신청</ProjectButton>
