@@ -12,25 +12,27 @@ const FundCard = ({ fundData }) => {
     <WrapCard>
       <Link to={`/fund/detail/story/${fundData.fundId}`}>
         <img src={fundData.imageURL} alt="메인사진" />
-        <WrapText>
-          <h3>{fundData.title}</h3>
-          <div>
-            <span> {fundData.category} </span>
-            <span>{fundData.supporters}</span>
-          </div>
-        </WrapText>
-        <SuccessBar percent={successPercent}>
-          <div></div>
-        </SuccessBar>
-        <GoalPrice>
-          <div>
-            <span>{successPercent}%</span>
-          </div>
-          <div>
-            <span> · {newPrice}원</span>
-            <span>{fundData.expDate}남음</span>
-          </div>
-        </GoalPrice>
+        <div>
+          <WrapText>
+            <h3>{fundData.title}</h3>
+            <div>
+              <span> {fundData.category} </span>
+              <span>{fundData.supporters}</span>
+            </div>
+          </WrapText>
+          <SuccessBar percent={successPercent}>
+            <div></div>
+          </SuccessBar>
+          <GoalPrice>
+            <div>
+              <span>{successPercent}%</span>
+            </div>
+            <div>
+              <span> · {newPrice}원</span>
+              <span>16일 남음</span>
+            </div>
+          </GoalPrice>
+        </div>
       </Link>
     </WrapCard>
   );
@@ -44,6 +46,22 @@ const WrapCard = styled.div`
   max-width: 310px;
   img {
     width: 100%;
+    height: 60%;
+  }
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+    a {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      > div {
+        width: 100%;
+      }
+    }
+    img {
+      width: 120px;
+      height: 90px;
+    }
   }
 `;
 
@@ -51,8 +69,9 @@ const WrapText = styled.div`
   margin: 10px 0;
   h3 {
     display: -webkit-box;
+    margin-bottom: 10px;
     width: 100%;
-    height: 50px;
+    height: 45px;
     white-space: normal;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

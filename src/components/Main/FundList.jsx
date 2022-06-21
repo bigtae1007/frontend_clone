@@ -36,8 +36,17 @@ const Wrap = styled.div`
   box-sizing: content-box;
 `;
 const WrapCardList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, calc(33.33333% - 30px));
-  grid-row-gap: 40px;
-  grid-column-gap: 30px;
+  @media screen and (min-width: 800px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 40px;
+    grid-column-gap: 50px;
+  }
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+  }
 `;
