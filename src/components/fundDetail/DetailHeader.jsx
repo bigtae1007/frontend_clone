@@ -51,7 +51,7 @@ const Head = styled.div`
       color: var(--white);
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     display: none;
   }
 `;

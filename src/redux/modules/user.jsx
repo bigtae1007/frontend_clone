@@ -42,7 +42,6 @@ export const requestError = createAction(ERROR, (payload) => ({ payload }));
 export const __kakaoLogin = (payload) => async (dispatch, getState) => {
   try {
     const response = await api.get(`/user/kakao/callback?code=${payload}`);
-    console.log(response);
     setCookie("token", response.headers.authorization, 7);
     localStorage.setItem("id", payload.email);
     dispatch(logIn());
@@ -117,11 +116,9 @@ export const __signUp = (payload) => async (dispatch, getState) => {
 export const __overlapEmail = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    console.log(payload);
     const response = await api.post("/dupCheck", { username: payload });
     dispatch(overlapEmail(response.data.result));
   } catch (error) {
-    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));

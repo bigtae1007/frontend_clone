@@ -6,6 +6,7 @@ import Button from "../elem/Button";
 import Input from "../elem/Input";
 //컴포넌트
 import SNSButton from "../elem/SNSButton";
+import { KAKAO_AUTH_URL } from "../SocialLogin/Kakao/Auth";
 //모듈
 import { __logIn } from "../redux/modules/user";
 import { emailCheck } from "../shared/regExp";
@@ -76,7 +77,7 @@ const LogIn = () => {
       </WrapForm>
       <OrDiv>또는</OrDiv>
       <WrapSNSLogIn>
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=c59093f9d7de311ae961d6cb6a2522c5&redirect_uri=http://13.124.63.214:8080/user/kakao/callback&response_type=code">
+        <a href={KAKAO_AUTH_URL}>
           <SNSButton url="kakao"></SNSButton>
         </a>
         <SNSButton url="naver"></SNSButton>
