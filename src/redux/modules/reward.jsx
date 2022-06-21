@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 
 import { api } from "../../shared/api";
-import { requestLoading, requestError } from "./user";
 // initialState
 const initialState = {
   reward: [
@@ -41,14 +40,18 @@ const initialState = {
 const LOAD = "funding/READ_LOAD";
 const FUNDING = "funding/UPDATE_FUNDING";
 
+const LOADING = "user/LOADING_STATE";
+const ERROR = "user/ERROR_STATE";
 // action creator
 
 const getLoad = createAction(LOAD, (payload) => ({ payload }));
 const funding = createAction(FUNDING, (payload) => payload);
 //loadinng / error action creator
+export const requestLoading = createAction(LOADING, (payload) => payload);
+export const requestError = createAction(ERROR, (payload) => payload);
 
 // thunk
-// 펀드 리스트 받기
+// reward 리스트 받기
 export const __getLoadRewardList = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
@@ -58,7 +61,6 @@ export const __getLoadRewardList = (payload) => async (dispatch, getState) => {
       dispatch(getLoad(response.data));
     }
   } catch (error) {
-    console.log(error);
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -67,12 +69,10 @@ export const __getLoadRewardList = (payload) => async (dispatch, getState) => {
 
 // 펀딩하기
 export const __funding = (payload) => async (dispatch, getState) => {
-  //
   dispatch(requestLoading(true));
   try {
     const response = await api.post(`/api/fund/${payload.id}`, payload.payload);
     if ((response.status = 200)) {
-      console.log(response);
       dispatch(funding(response.data));
       return true;
     }
@@ -95,6 +95,10 @@ export default function rewardReducer(state = initialState, action = {}) {
     case FUNDING:
       console.log(action.payload);
       return { ...state, fund: action.payload };
+    case LOADING:
+      return { ...state, loading: action.payload };
+    case ERROR:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

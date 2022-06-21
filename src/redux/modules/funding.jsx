@@ -2,9 +2,10 @@ import { createAction, handleActions } from "redux-actions";
 
 import { api } from "../../shared/api";
 import { setCookie } from "../../shared/Cookie";
-import { requestLoading, requestError } from "./user";
 // initialState
 const initialState = {
+  loading: false,
+  error: null,
   fund: [
     {
       postId: 1,
@@ -38,6 +39,9 @@ const initialState = {
 //action
 const LOAD = "funding/READ_LOAD";
 const LOADDETAIL = "funding/READ_LOADDETAIL";
+
+const LOADING = "funding/LOADING_STATE";
+const ERROR = "funding/ERROR_STATE";
 // action creator
 
 const getLoad = createAction(LOAD, (payload) => ({ payload }));
@@ -45,7 +49,8 @@ const getLoadDetail = createAction(LOADDETAIL, (payload) => payload);
 // const getLoadDetail = createAction();
 
 //loadinng / error action creator
-
+export const requestLoading = createAction(LOADING, (payload) => payload);
+export const requestError = createAction(ERROR, (payload) => payload);
 // thunk
 // 펀드 리스트 받기
 export const __getLoadFundList = () => async (dispatch, getState) => {
@@ -83,6 +88,10 @@ export default function fundingReudcer(state = initialState, action = {}) {
       return { ...state, fund: action.payload.payload };
     case LOADDETAIL:
       return { ...state, fundDetail: action.payload };
+    case LOADING:
+      return { ...state, loading: action.payload };
+    case ERROR:
+      return { ...state, error: action.payload };
     default:
       return state;
   }
