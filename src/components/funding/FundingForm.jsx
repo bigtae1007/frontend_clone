@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 //컴포넌트
 import FundingRewardCard from "./FundingRewardCard";
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { __funding } from "../../redux/modules/reward";
 
 const FundingForm = ({ fundReward, title }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
   const [patronState, setPatronState] = useState({});
@@ -23,26 +24,30 @@ const FundingForm = ({ fundReward, title }) => {
   const [totalPatron, setTotalPatron] = useState(0);
   const [plusPatron, setPlusPatron] = useState(0);
   // 펀딩하기
-  const sendFunding = () => {
+  const sendFunding = async () => {
     const payload = {
-      orderedReward: [],
+      orderedRewards: [],
       patron: Number(Number(totalPatron) + Number(plusPatron)),
       isNameHidden: checkHidden.isNameHidden,
       isPriceHidden: checkHidden.isPriceHidden,
     };
     for (let key in patronState) {
       if (patronState[key]) {
-        payload.orderedReward.push({
+        payload.orderedRewards.push({
           rewardId: key,
           quantity: Number(patronState[key]),
         });
       }
     }
-    dispatch(__funding({ payload, id: id }));
+    const res = await dispatch(__funding({ payload, id: id }));
+    console.log(res, "성공?");
+    if (res) {
+      alert("회원님의 펀딩에 감사합니다!");
+      navigate(-1);
+    }
   };
   //비공개 변경하기
   const changeHidden = (e) => {
-    console.log(e.target.id);
     setCheckHidden({ ...checkHidden, [e.target.id]: e.target.checked });
   };
 

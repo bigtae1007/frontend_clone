@@ -15,7 +15,9 @@ const Header = () => {
   };
   // 로그인 상태 확인
   useEffect(() => {
-    dispatch(__checkLogin());
+    if (localStorage.getItem("id")) {
+      dispatch(__checkLogin());
+    }
   }, []);
   return (
     <HeaderWrap>

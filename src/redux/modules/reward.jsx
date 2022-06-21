@@ -44,7 +44,7 @@ const FUNDING = "funding/UPDATE_FUNDING";
 // action creator
 
 const getLoad = createAction(LOAD, (payload) => ({ payload }));
-const funding = createAction(FUNDING, (payload) => ({ payload }));
+const funding = createAction(FUNDING, (payload) => payload);
 //loadinng / error action creator
 
 // thunk
@@ -74,6 +74,7 @@ export const __funding = (payload) => async (dispatch, getState) => {
     if ((response.status = 200)) {
       console.log(response);
       dispatch(funding(response.data));
+      return true;
     }
   } catch (error) {
     console.log(error);
@@ -90,6 +91,7 @@ export default function rewardReducer(state = initialState, action = {}) {
       console.log(action.payload.payload);
       return { ...state, reward: action.payload.payload };
     case FUNDING:
+      console.log(action.payload);
       return { ...state, fund: action.payload };
     default:
       return state;
