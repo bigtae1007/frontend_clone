@@ -10,6 +10,7 @@ const initialState = {
   isLogin: false,
   loading: false,
   error: null,
+  loginError: null,
 };
 //action
 const SIGNUP = "user/CREATE_SIGNUP";
@@ -20,6 +21,7 @@ const OVERLAPEMAIL = "user/CHECK_OVERLAPEMAIL";
 //state action
 const LOADING = "user/LOADING_STATE";
 const ERROR = "user/ERROR_STATE";
+const LOGINERROR = "user/ERROR_LOGINERROR";
 
 // action creator
 
@@ -28,12 +30,27 @@ const logIn = createAction(LOGIN, (payload) => ({ payload }));
 const checkLogin = createAction(CHECKLOGIN, (payload) => ({ payload }));
 const logOut = createAction(LOGOUT, (payload) => payload);
 const overlapEmail = createAction(OVERLAPEMAIL, (payload) => ({ payload }));
+const loginError = createAction(LOGINERROR, (payload) => payload);
 
 //loadinng / error action creator
 export const requestLoading = createAction(LOADING, (payload) => ({ payload }));
 export const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 // thunk
+
+// Kakao 로그인
+export const __kakaoLogin = (payload) => async (dispatch, getState) => {
+  try {
+    const response = await api.get(`/user/kakao/callback?code=${payload}`);
+    console.log(response);
+    setCookie("token", response.headers.authorization, 7);
+    localStorage.setItem("id", payload.email);
+    dispatch(logIn());
+  } catch {
+    dispatch(loginError());
+  } finally {
+  }
+};
 
 //로그인 체크
 export const __checkLogin = () => async (dispatch, getState) => {
@@ -123,11 +140,13 @@ export default function userReudcer(state = initialState, action = {}) {
     case OVERLAPEMAIL:
       return { ...state, checkEmail: action.payload };
     case LOGIN:
-      return { ...state, isLogin: true, userId: action.payload.payload };
+      return { ...state, isLogin: true, userId: action };
     case LOGOUT:
       return { ...state, isLogin: false, userId: "" };
     case CHECKLOGIN:
       return { ...state, isLogin: true };
+    case LOGINERROR:
+      return { ...state, loginError: true };
     default:
       return state;
   }

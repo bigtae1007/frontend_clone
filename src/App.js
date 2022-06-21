@@ -10,6 +10,7 @@ import FundDetail from "./pages/FundDetail";
 import Header from "./components/Headers/Header";
 import Funding from "./pages/Funding";
 import Cummunity from "./pages/Cummunity";
+import KakaoRedirectPage from "./pages/KakaoRedirectPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/fund/detail/story/:id" element={<FundDetail />} />
         <Route path="/fund/funding/:id" element={<Funding />} />
         <Route path="/fund/detail/:id/cummunity" element={<Cummunity />} />
+        <Route path="/user/kakao/callback" element={<KakaoRedirectPage />} />
       </Routes>
     </div>
   );
