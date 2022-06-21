@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createAction, handleActions } from "redux-actions";
 import { api } from "../../shared/api";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
@@ -40,14 +41,20 @@ export const requestError = createAction(ERROR, (payload) => ({ payload }));
 
 // Kakao 로그인
 export const __kakaoLogin = (payload) => async (dispatch, getState) => {
+  dispatch(requestLoading(true));
   try {
     const response = await api.get(`/user/kakao/callback?code=${payload}`);
-    setCookie("token", response.headers.authorization, 7);
-    localStorage.setItem("id", payload.email);
-    dispatch(logIn());
-  } catch {
+
+    const accessToken = response.headers.authorization;
+    setCookie("token", accessToken);
+    localStorage.setItem("id", response.headers.authorization);
+    if ((response.status = 200)) {
+      dispatch(logIn(payload.email));
+    }
+  } catch (error) {
     dispatch(loginError());
   } finally {
+    dispatch(requestLoading(false));
   }
 };
 
@@ -56,6 +63,7 @@ export const __checkLogin = () => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
     const response = await api.get("/test");
+
     if (response.status === 200) {
       dispatch(checkLogin(true));
     }
@@ -76,6 +84,7 @@ export const __logIn = (payload) => async (dispatch, getState) => {
       username: payload.email,
       password: payload.password,
     });
+
     setCookie("token", response.headers.authorization, 7);
     localStorage.setItem("id", payload.email);
     if ((response.status = 200)) {
@@ -103,7 +112,6 @@ export const __signUp = (payload) => async (dispatch, getState) => {
       nickname: payload.nick,
       password: payload.pw,
     });
-    alert("회원가입을 축하합니다!");
     dispatch(signUp(true));
   } catch (error) {
     alert("예상치 못한 에러가 발생했습니다. 다시 한번 시도해 주세요");
