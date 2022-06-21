@@ -5,13 +5,12 @@ import useSlicePrice from "../../custom/slicePrice";
 const RewardCard = ({ rewardData }) => {
   const slicePrice = useSlicePrice(String(rewardData.price));
   const slicedeliver = useSlicePrice(String(rewardData.deliveryFee));
-  const newContent = rewardData.rewardContent.split("/n");
-  console.log(newContent);
+  const newContent = rewardData.rewardContent?.split("/n");
   return (
     <WrapReWard>
       <h3 style={{ marginBottom: "10px" }}>{slicePrice}원 펀딩</h3>
       <p style={{ marginBottom: "10px" }}>{rewardData.rewardTitle}</p>
-      {newContent.map((v, l) => {
+      {newContent?.map((v, l) => {
         return (
           <pre key={l} style={{ marginBottom: "20px" }}>
             {v}

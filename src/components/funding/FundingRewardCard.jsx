@@ -15,8 +15,7 @@ const FundingRewardCard = ({
 
   const slicePrice = useSlicePrice(String(reward.price));
   const slicedeliver = useSlicePrice(String(reward.deliveryFee));
-  const newContent = reward.rewardContent.split("/n");
-  console.log(newContent);
+  const newContent = reward.rewardContent?.split("/n");
   // 체크 상태 확인
   const changeCheck = (e) => {
     if (e.target.checked) {

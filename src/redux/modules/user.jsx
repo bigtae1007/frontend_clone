@@ -44,8 +44,10 @@ export const __checkLogin = () => async (dispatch, getState) => {
       dispatch(checkLogin(true));
     }
   } catch (error) {
-    console.log(error);
-    dispatch(requestError(error));
+    alert("로그인 기간이 만료됐습니다. 다시 로그인 해주세요");
+    deleteCookie("token");
+    localStorage.removeItem("id");
+    dispatch(logOut());
   } finally {
     dispatch(requestLoading(false));
   }
