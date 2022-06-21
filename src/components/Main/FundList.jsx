@@ -7,14 +7,12 @@ import FundCard from "./FundCard";
 import FundListHeader from "./FundListHeader";
 //모듈
 import { __getLoadFundList } from "../../redux/modules/funding";
-import { __checkLogin } from "../../redux/modules/user";
 
 const FundList = () => {
   const dispatch = useDispatch();
   const fundList = useSelector((state) => state.funding.fund);
 
   React.useEffect(() => {
-    dispatch(__checkLogin());
     dispatch(__getLoadFundList());
   }, []);
   return (

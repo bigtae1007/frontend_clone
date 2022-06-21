@@ -88,7 +88,6 @@ export const __funding = (payload) => async (dispatch, getState) => {
 export default function rewardReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      console.log(action.payload.payload);
       return { ...state, reward: action.payload.payload };
     case FUNDING:
       console.log(action.payload);

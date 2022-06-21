@@ -15,7 +15,6 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Header />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LogIn />} />
