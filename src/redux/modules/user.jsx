@@ -60,16 +60,13 @@ export const __logIn = (payload) => async (dispatch, getState) => {
       username: payload.email,
       password: payload.password,
     });
-    console.log(response);
     setCookie("token", response.headers.authorization, 7);
     localStorage.setItem("id", payload.email);
     if ((response.status = 200)) {
       dispatch(logIn(payload.email));
-      console.log("로그인");
     }
   } catch (error) {
-    console.log(error);
-    dispatch(requestError(error));
+    alert("존재하지 않은 아이디 이거나 비밀번호가 틀렸습니다.");
   } finally {
     dispatch(requestLoading(false));
   }
@@ -90,8 +87,10 @@ export const __signUp = (payload) => async (dispatch, getState) => {
       nickname: payload.nick,
       password: payload.pw,
     });
+    alert("회원가입을 축하합니다!");
     dispatch(signUp(true));
   } catch (error) {
+    alert("예상치 못한 에러가 발생했습니다. 다시 한번 시도해 주세요");
     dispatch(requestError(error));
   } finally {
     dispatch(requestLoading(false));
@@ -101,7 +100,6 @@ export const __signUp = (payload) => async (dispatch, getState) => {
 export const __overlapEmail = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
-    //payload 1234@1234 로 들어옴
     console.log(payload);
     const response = await api.post("/dupCheck", { username: payload });
     dispatch(overlapEmail(response.data.result));

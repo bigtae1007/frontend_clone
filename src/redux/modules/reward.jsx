@@ -77,8 +77,11 @@ export const __funding = (payload) => async (dispatch, getState) => {
       return true;
     }
   } catch (error) {
-    console.log(error);
-    dispatch(requestError(error));
+    if (error.response.status === 400) {
+      alert("후원금액이 너무 많습니다." + "낮춰서 다시 작성해주시기 바랍니다.");
+    } else {
+      dispatch(requestError(error));
+    }
   } finally {
     dispatch(requestLoading(false));
   }
