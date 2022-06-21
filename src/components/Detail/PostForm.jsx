@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
+import { __addPost } from "../../redux/modules/post";
+import { useParams } from "react-router-dom";
 const PostForm = () => {
-  const [hideModal, setHideModal] = useState(true);
-  const onClick = () => setHideModal(false);
+  const [showForm, setshowForm] = useState(true);
+  const dispatch = useDispatch();
+  const contentRef = useRef();
+  const [category, setCategory] = useState();
+  const { id } = useParams();
+  const addPost = () => {
+    dispatch(
+      __addPost({
+        content: contentRef.current.value,
+        category: category,
+        id: id,
+      })
+    );
+    setshowForm(false);
+  };
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
   return (
     <>
-      {hideModal ? (
+      {showForm ? (
         <ModalWrap>
           <Modal>
             <ModalTitle>글 남기기</ModalTitle>
-            <Button onClick={onClick}>X</Button>
+            <Button onClick={onclick}>X</Button>
             <ModalP>
               응원·의견·체험리뷰를 남겨주세요
               <br />
@@ -19,22 +37,43 @@ const PostForm = () => {
             </ModalP>
             <form>
               <ModalLabel htmlFor="posttype1">
-                <ModalInput id="posttype1" type="radio" name="post" />
+                <ModalInput
+                  id="posttype1"
+                  type="radio"
+                  name="post"
+                  value={"응원"}
+                  onChange={handleChange}
+                />
                 <ModalInputText>응원 </ModalInputText>메이커를 응원하고 싶어요.
               </ModalLabel>
               <ModalLabel htmlFor="posttype2">
-                <ModalInput id="posttype2" type="radio" name="post" />
+                <ModalInput
+                  id="posttype2"
+                  type="radio"
+                  name="post"
+                  value={"의견"}
+                  onChange={handleChange}
+                />
                 <ModalInputText>의견 </ModalInputText>프로젝트에 대한 의견을
                 남기고 싶어요.
               </ModalLabel>
               <ModalLabel htmlFor="posttype3">
-                <ModalInput id="posttype3" type="radio" name="post" />
+                <ModalInput
+                  id="posttype3"
+                  type="radio"
+                  name="post"
+                  value={"체험 리뷰"}
+                  onChange={handleChange}
+                />
                 <ModalInputText>체험 리뷰 </ModalInputText>오프라인 체험 리뷰를
                 남기고 싶어요.
               </ModalLabel>
             </form>
             <label>
-              <ModalTextArea placeholder="메이커에게 응원·의견·체험 리뷰 메세지를 남겨주세요." />
+              <ModalTextArea
+                placeholder="메이커에게 응원·의견·체험 리뷰 메세지를 남겨주세요."
+                ref={contentRef}
+              />
             </label>
             <RedBox>
               최근 메이커 또는 제3자에 대한 허위사실 유포, 비방 목적의 댓글로
@@ -70,7 +109,9 @@ const PostForm = () => {
               </ModalListText>
             </div>
             <ButtonFlex>
-              <PostButton type="submit">등록</PostButton>
+              <PostButton type="submit" onClick={addPost}>
+                등록
+              </PostButton>
             </ButtonFlex>
           </Modal>
         </ModalWrap>

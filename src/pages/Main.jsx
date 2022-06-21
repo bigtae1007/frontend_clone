@@ -4,7 +4,7 @@ import Header from "../components/Headers/Header";
 import FundList from "../components/Main/FundList";
 import Slide from "./Slide";
 import Category from "./Category";
-import PostList from "./../components/Detail/PostList";
+import ContentList from "../components/Detail/ContenttList";
 
 const Main = () => {
   return (
@@ -14,7 +14,7 @@ const Main = () => {
       <Slide />
       <Category />
       <FundList />
-      <PostList />
+      <ContentList />
     </div>
   );
 };

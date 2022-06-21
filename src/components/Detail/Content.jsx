@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import userimg from "../../images/userimage.png";
 import Comment from "./Comment";
 import CommentLogin from "./CommentLogin";
+
 const Content = () => {
-  return (
-    <div>
-      <Flex>
+  const { list } = useSelector((state) => state.post);
+  const lists = list.map((value, index) => {
+    return (
+      <Flex key={index}>
         <div>
           <ContentImg src="https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20220320224907662_23473161.jpg/wadiz/thumbnail/36/format/jpg/quality/95/optimize/" />
         </div>
         <FlexRight>
           <Username>
-            ninkname<Text>응원 · 6시간 전</Text>
+            ninkname<Text>{value.category} · 6시간 전</Text>
           </Username>
-          <ContentText>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure
-            doloremque consectetur earum adipisci, temporibus voluptatum
-            similique modi error obcaecati asperiores debitis nostrum repellat?
-            Vel eos, cupiditate fugit voluptate delectus cumque.
-          </ContentText>
+          <ContentText>{value.content}</ContentText>
           <Button>답글</Button>
           <CommentWrap>
             <CommentImg src={userimg} />
@@ -30,8 +28,9 @@ const Content = () => {
           </CommentWrap>
         </FlexRight>
       </Flex>
-    </div>
-  );
+    );
+  });
+  return <>{lists}</>;
 };
 
 export default Content;

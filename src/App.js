@@ -9,6 +9,7 @@ import SignUpForm from "./pages/SignUpForm";
 import FundDetail from "./pages/FundDetail";
 import Header from "./components/Headers/Header";
 import Funding from "./pages/Funding";
+import Cummunity from "./pages/Cummunity";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/fund/detail/story/:id" element={<FundDetail />} />
         <Route path="/fund/funding/:id" element={<Funding />} />
+        <Route path="/fund/detail/:id/cummunity" element={<Cummunity />} />
       </Routes>
     </div>
   );

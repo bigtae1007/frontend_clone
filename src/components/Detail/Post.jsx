@@ -30,7 +30,6 @@ const Post = () => {
 export default Post;
 const PostWrap = styled.div`
   width: 632px;
-  margin: auto;
 `;
 const PostBox = styled.div`
   padding: 20px 0;
