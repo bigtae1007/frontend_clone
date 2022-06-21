@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 // 컴포넌트
 import Button from "../elem/Button";
 // 훅
@@ -24,36 +25,72 @@ const DetailSideMenu = ({
   likeCount,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const isLogin = useSelector((state) => state.user.isLogin);
   const successPercent = parseInt((currentFund / goal) * 100);
   const slicePrice = useSlicePrice(String(currentFund));
+
+  // 반응형을 위한 react-responsive 변수
+  const middleMedia = useMediaQuery({
+    query: "(max-width : 700px)",
+  });
 
   useEffect(() => {
     dispatch(__getLoadRewardList(id));
   }, []);
 
+  const checkLogin = () => {
+    if (isLogin) {
+      navigate(`/fund/funding/${id}`);
+    } else {
+      alert("로그인 후 이용해 주세요");
+    }
+  };
   return (
     <WrapSlideMenu>
-      <h2>{expDate}</h2>
-      <SuccessBar percent={successPercent}>
-        <div></div>
-      </SuccessBar>
-      <WrapText>
-        <h3>
-          {successPercent} <span> % 달성</span>
-        </h3>
-        <h3>
-          {slicePrice} <span> 원 펀딩</span>
-        </h3>
-        <h3>
-          {supportersCount} <span> 명의 서포터</span>
-        </h3>
-      </WrapText>
-      <Link to={`/fund/funding/${id}`}>
-        <Button size="size1" color="white">
-          펀딩하기
-        </Button>
-      </Link>
+      {middleMedia ? (
+        <>
+          <MediaGoalDiv>
+            <h2>16일 남음</h2>
+            <h3>
+              {successPercent} <span> % 달성</span>
+            </h3>
+          </MediaGoalDiv>
+          <SuccessBar percent={successPercent}>
+            <div></div>
+          </SuccessBar>
+          <WrapText>
+            <h3>
+              {slicePrice} <span> 원 펀딩</span>
+            </h3>
+            <h3>
+              {supportersCount} <span> 명의 서포터</span>
+            </h3>
+          </WrapText>
+        </>
+      ) : (
+        <>
+          <h2>16일 남음</h2>
+          <SuccessBar percent={successPercent}>
+            <div></div>
+          </SuccessBar>
+          <WrapText>
+            <h3>
+              {successPercent} <span> % 달성</span>
+            </h3>
+            <h3>
+              {slicePrice} <span> 원 펀딩</span>
+            </h3>
+            <h3>
+              {supportersCount} <span> 명의 서포터</span>
+            </h3>
+          </WrapText>
+        </>
+      )}
+      <Button size="size1" color="white" onClick={checkLogin}>
+        펀딩하기
+      </Button>
       <WrapBtn>
         <button>
           <span>하트</span>
@@ -62,11 +99,14 @@ const DetailSideMenu = ({
         <button>문의</button>
         <button>공유하기</button>
       </WrapBtn>
-      <ImgVeiw src={banner1} alt="#" />
-      <ImgVeiw src={banner2} alt="#" />
-      <ImgVeiw src={point} alt="#" />
-      <ImgVeiw style={{ margin: "30px 0" }} src={partner} alt="#" />
-
+      <MediaImgDiv>
+        <ImgVeiw src={banner1} alt="#" />
+        <ImgVeiw src={banner2} alt="#" />
+        <ImgVeiw src={point} alt="#" />
+      </MediaImgDiv>
+      {!middleMedia && (
+        <ImgVeiw style={{ margin: "30px 0" }} src={partner} alt="#" />
+      )}
       <MakerInfo>
         <p>메이커 정보</p>
         <div>
@@ -75,7 +115,7 @@ const DetailSideMenu = ({
               src="https://hanghae99.spartacodingclub.kr/static/images/logo.svg"
               alt="회사 로고"
             />
-            <h3>{supporters}</h3>
+            <h3>스파르타 코딩 클럽</h3>
           </div>
           <DetailInfo>
             <div>
@@ -114,7 +154,7 @@ const DetailSideMenu = ({
           </div>
         </div>
       </MakerInfo>
-      <ReWard />
+      {!middleMedia && <ReWard />}
     </WrapSlideMenu>
   );
 };
@@ -123,8 +163,9 @@ export default DetailSideMenu;
 const WrapSlideMenu = styled.div`
   width: 284px;
 
-  h2 {
-    font-size: 24px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    padding: 20px;
   }
 `;
 
@@ -139,6 +180,9 @@ const SuccessBar = styled.div`
     background-color: var(--aquaD);
     width: ${({ percent }) => `${percent}%`};
   }
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const WrapText = styled.div`
@@ -148,11 +192,14 @@ const WrapText = styled.div`
   gap: 20px;
   margin-bottom: 30px;
   h3 {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     > span {
       font-size: 14px;
     }
+  }
+  @media screen and (max-width: 700px) {
+    width: 100%;
   }
 `;
 const WrapBtn = styled.div`
@@ -169,6 +216,9 @@ const WrapBtn = styled.div`
     :hover {
       background-color: var(--grey);
     }
+  }
+  @media screen and (max-width: 700px) {
+    width: 100%;
   }
 `;
 const MakerInfo = styled.div`
@@ -253,4 +303,29 @@ const InfoQuestion = styled.button`
 const ImgVeiw = styled.img`
   margin: 10px 0;
   width: 100%;
+  @media screen and (max-width: 700px) {
+    width: 400px;
+    margin: 0 auto;
+    height: 50px;
+  }
+`;
+
+// 반응형 추가 부분
+
+const MediaGoalDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: var(--dGrey);
+  margin-top: 20px;
+  h2,
+  h3 {
+    font-size: 16px;
+  }
+`;
+
+const MediaImgDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 `;

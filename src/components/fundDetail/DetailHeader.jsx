@@ -36,6 +36,9 @@ const Head = styled.div`
   width: 100%;
   height: 222px;
   border: 1px solid #adabab9e;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.2);
+
   > div {
     > p {
       margin-bottom: 20px;
@@ -47,6 +50,9 @@ const Head = styled.div`
       font-size: 36px;
       color: var(--white);
     }
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `;
 const BackgroundHead = styled.div`

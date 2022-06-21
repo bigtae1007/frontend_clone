@@ -28,20 +28,28 @@ const DetailMain = () => {
       <DetailMenu supportersCount={fundDetailData.supportersCount} />
       <WrapContent>
         <DetailContent
+          title={fundDetailData.title}
           content={fundDetailData.content}
           img={fundDetailData.imageURL}
           goal={fundDetailData.fundingGoal}
           expDate={fundDetailData.expDate}
-        />
-        <DetailSideMenu
-          goal={fundDetailData.fundingGoal}
           currentFund={fundDetailData.currentFund}
-          expDate={fundDetailData.expDate}
           supportersCount={fundDetailData.supportersCount}
           supporters={fundDetailData.supporters}
           likeCheck={fundDetailData.likeCheck}
           likeCount={fundDetailData.likeCount}
         />
+        <MediaDiv>
+          <DetailSideMenu
+            goal={fundDetailData.fundingGoal}
+            currentFund={fundDetailData.currentFund}
+            expDate={fundDetailData.expDate}
+            supportersCount={fundDetailData.supportersCount}
+            supporters={fundDetailData.supporters}
+            likeCheck={fundDetailData.likeCheck}
+            likeCount={fundDetailData.likeCount}
+          />
+        </MediaDiv>
       </WrapContent>
     </div>
   );
@@ -55,4 +63,10 @@ const WrapContent = styled.div`
   justify-content: center;
   gap: 2%;
   width: 100%;
+`;
+
+const MediaDiv = styled.div`
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 `;
