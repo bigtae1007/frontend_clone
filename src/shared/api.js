@@ -2,7 +2,7 @@ import axios from "axios";
 
 // axios 기본 주소 & header 타입 세팅
 export const api = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: "http://13.124.63.214:8080",
   //  http://localhost:5001
   // http://13.124.63.214:8080
   headers: {

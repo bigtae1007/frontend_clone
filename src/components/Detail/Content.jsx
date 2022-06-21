@@ -6,17 +6,18 @@ import Comment from "./Comment";
 import CommentLogin from "./CommentLogin";
 
 const Content = () => {
-  return (
-    <>
-      <Flex>
+  const { list } = useSelector((state) => state.post);
+  const lists = list.map((value, index) => {
+    return (
+      <Flex key={index}>
         <div>
           <ContentImg src="https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20220320224907662_23473161.jpg/wadiz/thumbnail/36/format/jpg/quality/95/optimize/" />
         </div>
         <FlexRight>
           <Username>
-            ninkname<Text> · 6시간 전</Text>
+            ninkname<Text>{value.category} · 6시간 전</Text>
           </Username>
-          <ContentText></ContentText>
+          <ContentText>{value.content}</ContentText>
           <Button>답글</Button>
           <CommentWrap>
             <CommentImg src={userimg} />
@@ -27,8 +28,9 @@ const Content = () => {
           </CommentWrap>
         </FlexRight>
       </Flex>
-    </>
-  );
+    );
+  });
+  return <>{lists}</>;
 };
 
 export default Content;

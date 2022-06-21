@@ -2,20 +2,19 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __addPost } from "../../redux/modules/post";
+import { useParams } from "react-router-dom";
 const PostForm = () => {
   const [showForm, setshowForm] = useState(true);
   const dispatch = useDispatch();
   const contentRef = useRef();
   const [category, setCategory] = useState();
-
-  // useEffect(() => {
-  //   dispatch(__loadPost());
-  // }, [dispatch]);
+  const { id } = useParams();
   const addPost = () => {
     dispatch(
       __addPost({
         content: contentRef.current.value,
         category: category,
+        id: id,
       })
     );
     setshowForm(false);
@@ -29,7 +28,7 @@ const PostForm = () => {
         <ModalWrap>
           <Modal>
             <ModalTitle>글 남기기</ModalTitle>
-            <Button>X</Button>
+            <Button onClick={onclick}>X</Button>
             <ModalP>
               응원·의견·체험리뷰를 남겨주세요
               <br />
