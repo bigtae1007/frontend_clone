@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +83,7 @@ const DetailSideMenu = ({
               {slicePrice} <span> 원 펀딩</span>
             </h3>
             <h3>
-              {supportersCount} <span> 명의 서포터</span>
+              {supportersCount} <span> 100 명의 서포터</span>
             </h3>
           </WrapText>
         </>
@@ -93,7 +93,8 @@ const DetailSideMenu = ({
       </Button>
       <WrapBtn>
         <button>
-          <span>하트</span>
+          <Heart state={true}>♥</Heart>
+          <span>100</span>
           {likeCount}
         </button>
         <button>문의</button>
@@ -124,7 +125,7 @@ const DetailSideMenu = ({
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGZpbGw9IiMwMEM0QzQiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik04IDhjLTEuNjUzLS4wMS0zLTEuMy0zLTMuMDQyQzUgMy4zNDMgNi4zNDcgMiA4IDJzMyAxLjM0MyAzIDIuOTU4QzExIDYuNjk5IDkuNjUzIDguMDEgOCA4ek0xMy4zMTIgMTRIMi42ODhDMi4yMTQgMTQgMiAxMy42OTggMiAxMy4yNzQgMiAxMi4wMjMgMy45MTcgOC43NSA4IDguNzVzNiAzLjI3MyA2IDQuNTI0YzAgLjQyNC0uMjE0LjcyNi0uNjg4LjcyNnoiLz4KICAgICAgICA8L2c+CiAgICAgICAgPHBhdGggZD0iTTAgMGgxNnYxNkgweiIvPgogICAgPC9nPgo8L3N2Zz4K"
                   alt="사람이미지 로고"
                 />
-                <span>서포터 {supportersCount} 명</span>
+                <span>서포터 100 명</span>
               </div>
               <div>
                 <p>펀딩.스토어 합산</p>
@@ -182,6 +183,9 @@ const SuccessBar = styled.div`
   @media screen and (max-width: 700px) {
     width: 100%;
   }
+`;
+const Heart = styled.span`
+  color: ${({ state }) => (state ? "var(--red)" : "var(--grey)")};
 `;
 
 const WrapText = styled.div`
