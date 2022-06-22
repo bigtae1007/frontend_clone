@@ -125,7 +125,11 @@ export const __overlapEmail = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
     const response = await api.post("/dupCheck", { username: payload });
-    dispatch(overlapEmail(response.data.result));
+    if (response.data) {
+      dispatch(overlapEmail(response.data));
+    } else {
+      alert("아이디가 중복됩니다.");
+    }
   } catch (error) {
     dispatch(requestError(error));
   } finally {
