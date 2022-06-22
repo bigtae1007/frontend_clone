@@ -8,6 +8,7 @@ import Input from "../elem/Input";
 //모듈
 import { __overlapEmail, __signUp } from "../redux/modules/user";
 import { emailCheck, nickCheck } from "../shared/regExp";
+import LogHeader from "../components/Headers/LogHeader";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -76,76 +77,79 @@ const SignUpForm = () => {
     }
   };
   return (
-    <WrapSignUpForm>
-      <h2>회원가입</h2>
-      <p>최소한의 정보를 받고있습니다</p>
-      <WrapForm onSubmit={signUp}>
-        <div>
-          <label htmlFor="nick">이름</label>
-          <WrapInput>
-            <Input
-              type="text"
-              id="nick"
-              placeholder="이름 입력"
-              onChange={changeInput}
-            />
-          </WrapInput>
-          {nickCheckState ? null : (
-            <WarnningSpan>이름을 입력해주세요</WarnningSpan>
-          )}
-        </div>
-        <div>
-          <label htmlFor="email">이메일</label>
-          <WrapInput>
-            <Input
-              type="email"
-              id="email"
-              placeholder="이메일 계정"
-              onChange={changeInput}
-            />
-            <button disabled={!emailCheckState} onClick={overlapEmailEvent}>
-              중복확인
-            </button>
-          </WrapInput>
-          {emailCheckState ? (
-            !overlapEmail ? (
-              <WarnningSpan>중복확인 해주세요</WarnningSpan>
-            ) : null
-          ) : (
-            <WarnningSpan>아이디(이메일 계정)를 입력해주세요</WarnningSpan>
-          )}
-        </div>
-        <div>
-          <label htmlFor="pw">비밀번호</label>
-          <WrapInput>
-            <Input
-              type="password"
-              id="pw"
-              placeholder="비밀번호"
-              disabled={!overlapEmail}
-              onChange={changeInput}
-            />
-          </WrapInput>
-          <WrapInput>
-            <Input
-              type="password"
-              id="pwCheck"
-              placeholder="비밀번호 확인"
-              disabled={!overlapEmail}
-              onChange={changeInput}
-            />
-          </WrapInput>
-        </div>
-        <Button
-          size="size1"
-          color="white"
-          type="submit"
-          disabled={!submitState}
-        >
-          완료
-        </Button>
-      </WrapForm>
-    </WrapSignUpForm>
+    <>
+      <LogHeader />
+      <WrapSignUpForm>
+        <h2>회원가입</h2>
+        <p>최소한의 정보를 받고있습니다</p>
+        <WrapForm onSubmit={signUp}>
+          <div>
+            <label htmlFor="nick">이름</label>
+            <WrapInput>
+              <Input
+                type="text"
+                id="nick"
+                placeholder="이름 입력"
+                onChange={changeInput}
+              />
+            </WrapInput>
+            {nickCheckState ? null : (
+              <WarnningSpan>이름을 입력해주세요</WarnningSpan>
+            )}
+          </div>
+          <div>
+            <label htmlFor="email">이메일</label>
+            <WrapInput>
+              <Input
+                type="email"
+                id="email"
+                placeholder="이메일 계정"
+                onChange={changeInput}
+              />
+              <button disabled={!emailCheckState} onClick={overlapEmailEvent}>
+                중복확인
+              </button>
+            </WrapInput>
+            {emailCheckState ? (
+              !overlapEmail ? (
+                <WarnningSpan>중복확인 해주세요</WarnningSpan>
+              ) : null
+            ) : (
+              <WarnningSpan>아이디(이메일 계정)를 입력해주세요</WarnningSpan>
+            )}
+          </div>
+          <div>
+            <label htmlFor="pw">비밀번호</label>
+            <WrapInput>
+              <Input
+                type="password"
+                id="pw"
+                placeholder="비밀번호"
+                disabled={!overlapEmail}
+                onChange={changeInput}
+              />
+            </WrapInput>
+            <WrapInput>
+              <Input
+                type="password"
+                id="pwCheck"
+                placeholder="비밀번호 확인"
+                disabled={!overlapEmail}
+                onChange={changeInput}
+              />
+            </WrapInput>
+          </div>
+          <Button
+            size="size1"
+            color="white"
+            type="submit"
+            disabled={!submitState}
+          >
+            완료
+          </Button>
+        </WrapForm>
+      </WrapSignUpForm>
+    </>
   );
 };
 
