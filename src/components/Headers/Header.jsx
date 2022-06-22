@@ -70,7 +70,6 @@ const Header = () => {
           </div>
         </Flex>
       </HeaderBox>
-      <SubNavWrap />
     </HeaderWrap>
   );
 };
