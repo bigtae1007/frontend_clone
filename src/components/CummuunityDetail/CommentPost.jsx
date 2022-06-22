@@ -2,12 +2,12 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux/es/exports";
 import { useParams } from "react-router-dom";
-import { __addComment } from "./../../redux/modules/comment";
+import { __addComment } from "./../../redux/modules/post";
 
-const CommentPost = () => {
+const CommentPost = ({ id }) => {
+  console.log(id);
   const commentRef = useRef();
   const dispatch = useDispatch();
-  const { id } = useParams();
   const addComment = () => {
     dispatch(
       __addComment({
