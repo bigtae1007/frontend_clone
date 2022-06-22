@@ -11,11 +11,13 @@ import Header from "./components/Headers/Header";
 import Funding from "./pages/Funding";
 import Cummunity from "./pages/Cummunity";
 import KakaoRedirectPage from "./pages/KakaoRedirectPage";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
+      {/* <Chat /> */}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LogIn />} />

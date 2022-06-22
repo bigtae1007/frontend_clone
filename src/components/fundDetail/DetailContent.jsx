@@ -69,6 +69,7 @@ const WrapContent = styled.div`
   width: 40%;
   @media screen and (max-width: 700px) {
     width: 100%;
+    padding: 20px;
   }
 `;
 
