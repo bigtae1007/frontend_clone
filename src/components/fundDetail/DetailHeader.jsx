@@ -34,7 +34,7 @@ const Head = styled.div`
   text-align: center;
   align-items: center;
   width: 100%;
-  height: 222px;
+  height: 200px;
   border: 1px solid #adabab9e;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.2);
@@ -57,12 +57,12 @@ const Head = styled.div`
 `;
 const BackgroundHead = styled.div`
   position: absolute;
-  top: 112px;
+  top: 80px;
   right: -20px;
   bottom: -20px;
   left: -20px;
   width: 100%;
-  height: 205px;
+  height: 180px;
   z-index: -1;
   background-image: url(${({ img }) => img});
   background-repeat: no-repeat;

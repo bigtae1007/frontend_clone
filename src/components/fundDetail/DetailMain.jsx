@@ -25,7 +25,7 @@ const DetailMain = () => {
         category={fundDetailData.category}
         img={fundDetailData.imageURL}
       />
-      <DetailMenu supportersCount={fundDetailData.supportersCount} />
+      <DetailMenu supportersCount={fundDetailData.supportersCount} menu="1" />
       <WrapContent>
         <DetailContent
           title={fundDetailData.title}

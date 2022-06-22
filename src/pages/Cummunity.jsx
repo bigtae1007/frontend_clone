@@ -5,16 +5,18 @@ import DetailHeader from "../components/fundDetail/DetailHeader";
 import DetailMenu from "../components/fundDetail/DetailMenu";
 import DetailSideMenu from "../components/DetailSideMenu";
 import Post from "../components/Detail/Post";
+import Header from "../components/Headers/Header";
 const Cummunity = () => {
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
   return (
     <div>
+      <Header />
       <DetailHeader
         title={fundDetailData.title}
         category={fundDetailData.category}
         img={fundDetailData.imageURL}
       />
-      <DetailMenu supportersCount={fundDetailData.supportersCount} />
+      <DetailMenu supportersCount={fundDetailData.supportersCount} menu={4} />
       <WrapContent>
         <Post />
         <DetailSideMenu

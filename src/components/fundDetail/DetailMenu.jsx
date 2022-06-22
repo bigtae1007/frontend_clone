@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const DetailMenu = ({ supportersCount }) => {
+const DetailMenu = ({ supportersCount, menu }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   return (
-    <WrapMenu>
+    <WrapMenu menu={menu}>
       <div
         onClick={() => {
           navigate(`/fund/detail/story/${id}`);
@@ -49,7 +49,7 @@ const WrapMenu = styled.div`
       font-size: 12px;
     }
   }
-  div:first-child {
+  div:nth-child(${({ menu }) => menu}) {
     border-bottom: 2px solid var(--aquaD);
   }
 `;
