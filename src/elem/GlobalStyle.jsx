@@ -30,12 +30,23 @@ const GlobalStyle = createGlobalStyle`
     --gray:rgba(33,37,41,.86);
     --swiper-theme-color: #fff!important;
   }
+  .mySwiper1{
+    position: relative;
+  }
     .mySwiper1 .swiper-pagination{
       top: 90%!important;
-      left: 120px!important;
+      left: 210px!important;
       width: 20%!important;
       height: 2px!important;
       border-radius: 30px!important;
+      @media screen and (max-width: 1160px) {
+        width: 30%!important;
+        height: 5px!important;
+  }
+  @media screen and (max-width: 900px) {
+display: none;
+top: 95%!important;
+  }
     }
     .mySwiper1 .swiper-pagination-progressbar-fill{
       height: 2px!important;
@@ -44,10 +55,13 @@ const GlobalStyle = createGlobalStyle`
     .mySwiper1 .swiper-button-prev{
       top: 85%;
       left: auto;
-      right: 160px;
+      right: 225px;
       width: 40px;
       height: 40px;
       background-color: rgba(0,0,0,.4);
+      @media screen and (max-width: 1160px) {
+    display: none;
+  }
     }
     .mySwiper1 .swiper-button-prev::after{
       top: 50%;
@@ -57,10 +71,13 @@ const GlobalStyle = createGlobalStyle`
     .mySwiper1 .swiper-button-next{
       top: 85%;
       left: auto;
-      right: 120px;
+      right: 185px;
       width: 40px;
       height: 40px;
       background-color: rgba(0,0,0,.4);
+      @media screen and (max-width: 1160px) {
+    display: none;
+  }
     }
     .mySwiper1 .swiper-button-next::after{
       top: 50%;
@@ -77,6 +94,9 @@ const GlobalStyle = createGlobalStyle`
       left: -15px;
       width: 40px;
       height: 40px;
+      @media screen and (max-width: 1160px) {
+    display: none;
+  }
     }
     .mySwiper2 .swiper-button-prev::after{
       font-size: 18px;
@@ -86,6 +106,9 @@ const GlobalStyle = createGlobalStyle`
       right: -15px;
       width: 40px;
       height: 40px;
+      @media screen and (max-width: 1160px) {
+    display: none;
+  }
     }
     .mySwiper2 .swiper-button-next::after{
       font-size: 18px;

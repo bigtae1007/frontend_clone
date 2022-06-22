@@ -41,4 +41,8 @@ const WrapContent = styled.div`
   justify-content: center;
   gap: 2%;
   width: 100%;
+  @media screen and (max-width: 700px) {
+    margin: 0;
+    display: block;
+  }
 `;

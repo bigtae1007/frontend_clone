@@ -37,6 +37,7 @@ const SubNavList = styled.ul`
   li {
     width: 120px;
     height: 35px;
+    line-height: 35px;
     text-align: center;
     span {
       height: 100%;
