@@ -4,8 +4,8 @@ import Header from "../components/Headers/Header";
 import FundList from "../components/Main/FundList";
 import Slide from "./Slide";
 import Category from "./Category";
-import ContentList from "../components/Detail/ContenttList";
 import SubNavWrap from "../components/Headers/SubNavWrap";
+
 const Main = () => {
   return (
     <div>
@@ -15,7 +15,6 @@ const Main = () => {
       <Slide />
       <Category />
       <FundList />
-      <ContentList />
     </div>
   );
 };
