@@ -1,34 +1,34 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __addPost } from "../../redux/modules/post";
+import { __updatePost } from "../../redux/modules/post";
 import { useParams } from "react-router-dom";
-const PostForm = () => {
+const PostUpdateModal = (props) => {
+  const { open, close, commentId } = props;
   const [showForm, setshowForm] = useState(true);
   const dispatch = useDispatch();
   const contentRef = useRef();
   const [category, setCategory] = useState();
-  const { id } = useParams();
-  const addPost = () => {
+  const updatePost = () => {
     dispatch(
-      __addPost({
+      __updatePost({
         content: contentRef.current.value,
         category: category,
-        id: id,
+        id: commentId,
       })
     );
-    setshowForm(false);
+    setshowForm(!showForm);
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
   return (
     <>
-      {showForm ? (
+      {open ? (
         <ModalWrap>
           <Modal>
-            <ModalTitle>글 남기기</ModalTitle>
-            <Button onClick={onclick}>X</Button>
+            <ModalTitle>글 수정하기</ModalTitle>
+            <Button onClick={close}>X</Button>
             <ModalP>
               응원·의견·체험리뷰를 남겨주세요
               <br />
@@ -71,6 +71,7 @@ const PostForm = () => {
             </form>
             <label>
               <ModalTextArea
+                maxlength="2000"
                 placeholder="메이커에게 응원·의견·체험 리뷰 메세지를 남겨주세요."
                 ref={contentRef}
               />
@@ -109,7 +110,7 @@ const PostForm = () => {
               </ModalListText>
             </div>
             <ButtonFlex>
-              <PostButton type="submit" onClick={addPost}>
+              <PostButton type="submit" onClick={updatePost}>
                 등록
               </PostButton>
             </ButtonFlex>
@@ -120,7 +121,7 @@ const PostForm = () => {
   );
 };
 
-export default PostForm;
+export default PostUpdateModal;
 const ModalWrap = styled.div`
   position: fixed;
   top: 0;
@@ -200,6 +201,10 @@ const ModalTextArea = styled.textarea`
   color: rgba(0, 0, 0, 0.84);
   display: block;
   line-height: inherit;
+  resize: none;
+  &:focus {
+    outline-color: #00c4c4;
+  }
 `;
 const RedBox = styled.div`
   color: #f66;

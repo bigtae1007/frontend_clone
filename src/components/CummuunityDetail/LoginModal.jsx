@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LoginModal = () => {
-  const [hideLogin, setHideLogin] = useState(true);
-  const onClick = () => setHideLogin(false);
   return (
     <div>
-      {hideLogin ? (
-        <ModalWrap>
-          <Modal>
-            <ModalTitle>로그인이 필요합니다</ModalTitle>
-            <Button onClick={onClick}>X</Button>
-            <ButtonFlex>
-              <SignUpButton type="submit">회원가입</SignUpButton>
-              <LoginButton type="submit">로그인</LoginButton>
-            </ButtonFlex>
-          </Modal>
-        </ModalWrap>
-      ) : null}
+      <ModalWrap>
+        <Modal>
+          <ModalTitle>로그인이 필요합니다</ModalTitle>
+          <Button>X</Button>
+          <ButtonFlex>
+            <SignUpButton>
+              <Link to="/signup">회원가입</Link>
+            </SignUpButton>
+            <LoginButton>
+              <Link to="/login">로그인</Link>
+            </LoginButton>
+          </ButtonFlex>
+        </Modal>
+      </ModalWrap>
     </div>
   );
 };

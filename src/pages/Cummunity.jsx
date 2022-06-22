@@ -4,7 +4,8 @@ import styled from "styled-components";
 import DetailHeader from "../components/fundDetail/DetailHeader";
 import DetailMenu from "../components/fundDetail/DetailMenu";
 import DetailSideMenu from "../components/DetailSideMenu";
-import Post from "../components/Detail/Post";
+import Post from "./../components/CummuunityDetail/Post";
+
 const Cummunity = () => {
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
   return (

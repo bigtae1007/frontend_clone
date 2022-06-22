@@ -1,28 +1,39 @@
 import React, { useState } from "react";
-import Content from "./Content";
+import PostList from "./PostList";
 import PostForm from "./PostForm";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 
 const Post = () => {
   const [showPost, setshowPost] = useState(false);
-  const onClick = () => setshowPost(true);
+  const openPostForm = () => {
+    setshowPost(true);
+  };
+  const closePostForm = () => {
+    setshowPost(false);
+  };
   return (
     <PostWrap>
       <PostBox>
         <PostTitle>응원·의견·체험리뷰</PostTitle>
         <PostText>펀딩 종료전에 남긴 글입니다.</PostText>
-        <Button onClick={onClick}>글 남기기</Button>
+        <Button
+          onClick={() => {
+            setshowPost(true);
+          }}
+        >
+          글 남기기
+        </Button>
       </PostBox>
-      {showPost ? (
+      {showPost === true ? (
         <div>
           {/* 로그인안된 경우 */}
           {/* <LoginModal /> */}
           {/* 로그인된 경우 */}
-          <PostForm />
+          <PostForm open={openPostForm} close={closePostForm} />
         </div>
       ) : null}
-      <Content />
+      <PostList />
     </PostWrap>
   );
 };
