@@ -3,70 +3,79 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 //컴포넌트
 import SNSButton from "../elem/SNSButton";
+import LogHeader from "../components/Headers/LogHeader";
 
 const SignUp = () => {
   const navigate = useNavigate();
 
   return (
-    <WrapAll>
-      <WrapSignUp>
-        <SignUpSelect>
-          <h2>회원가입</h2>
-          <p>
-            와디즈 신규회원 가입하고
-            <br />
-            다양한 혜택을 받아보세요.
-          </p>
-          <WrapFlex>
-            <WrapSNSSignUp>
-              <SNSButton url="kakao"></SNSButton>
-              <SNSButton url="naver"></SNSButton>
-              <SNSButton url="google"></SNSButton>
-              <SNSButton url="apple"></SNSButton>
-              <SNSButton url="facebook"></SNSButton>
-            </WrapSNSSignUp>
-            <OrDiv>또는</OrDiv>
-            <button
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
-              이메일로 가입
-            </button>
-            <OrDiv>
-              <span>법인 회원가입</span>
-              <span>투자조합 가입</span>
-            </OrDiv>
+    <>
+      <LogHeader />
+      <WrapAll>
+        <WrapSignUp>
+          <SignUpSelect>
+            <h2>회원가입</h2>
             <p>
-              이미 와디즈 계정이 있나요?{" "}
-              <span
+              와디즈 신규회원 가입하고
+              <br />
+              다양한 혜택을 받아보세요.
+            </p>
+            <WrapFlex>
+              <WrapSNSSignUp>
+                <SNSButton url="kakao"></SNSButton>
+                <SNSButton url="naver"></SNSButton>
+                <SNSButton url="google"></SNSButton>
+                <SNSButton url="apple"></SNSButton>
+                <SNSButton url="facebook"></SNSButton>
+              </WrapSNSSignUp>
+              <OrDiv>또는</OrDiv>
+              <button
                 onClick={() => {
-                  navigate("/login");
+                  navigate("/signup");
                 }}
               >
-                로그인
-              </span>
-            </p>
-          </WrapFlex>
-        </SignUpSelect>
-      </WrapSignUp>
-      <Img></Img>
-    </WrapAll>
+                이메일로 가입
+              </button>
+              <OrDiv>
+                <span>법인 회원가입</span>
+                <span>투자조합 가입</span>
+              </OrDiv>
+              <p>
+                이미 와디즈 계정이 있나요?{" "}
+                <span
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  로그인
+                </span>
+              </p>
+            </WrapFlex>
+          </SignUpSelect>
+        </WrapSignUp>
+        <Img></Img>
+      </WrapAll>
+    </>
   );
 };
 
 export default SignUp;
 const WrapAll = styled.div`
   display: flex;
+  justify-content: center;
   margin: 100px auto;
-  width: 1000px;
+  width: 100%;
+  @media screen and (max-width: 950px) {
+  }
 `;
 
 const WrapSignUp = styled.div`
-  width: 500px;
   h2 {
     font-size: 32px;
     margin-bottom: 20px;
+  }
+  @media screen and (max-width: 950px) {
+    margin: 0 auto;
   }
 `;
 
@@ -131,10 +140,14 @@ const OrDiv = styled.div`
   }
 `;
 const Img = styled.div`
+  margin-left: 50px;
   width: 500px;
   height: 535px;
   background-image: url(https://static.wadiz.kr/account/media/regist-intro-benefit.3c9ef4a1.jpeg);
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 10px;
+  @media screen and (max-width: 950px) {
+    display: none;
+  }
 `;

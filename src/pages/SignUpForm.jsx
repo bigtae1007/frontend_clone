@@ -1,17 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 //컴포넌트
 import Button from "../elem/Button";
 import Input from "../elem/Input";
 //모듈
 import { __overlapEmail, __signUp } from "../redux/modules/user";
 import { emailCheck, nickCheck } from "../shared/regExp";
+import LogHeader from "../components/Headers/LogHeader";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 이메일 중복확인 상태값
   const overlapEmail = useSelector((state) => state.user.checkEmail);
+  const signupState = useSelector((state) => state.user.signup);
   const [signUpData, setSignUpData] = React.useState({
     nick: "",
     email: "",
@@ -19,7 +23,7 @@ const SignUpForm = () => {
     pwCheck: "",
   });
 
-  const [submitState, setSubmitState] = React.useState(true);
+  const [submitState, setSubmitState] = React.useState(false);
   const [emailCheckState, setEmailCheckState] = React.useState(false);
   const [nickCheckState, setnickCheckState] = React.useState(false);
   const [pwCheckState, setpwCheckState] = React.useState(false);
@@ -37,7 +41,7 @@ const SignUpForm = () => {
     } else {
       setEmailCheckState(false);
     }
-    if (nickCheck(signUpData.nick) && signUpData.nick > 2) {
+    if (nickCheck(signUpData.nick)) {
       setnickCheckState(true);
     } else {
       setnickCheckState(false);
@@ -54,6 +58,12 @@ const SignUpForm = () => {
       setSubmitState(true);
     }
   }, [emailCheckState, nickCheckState, pwCheckState]);
+  React.useEffect(() => {
+    if (signupState) {
+      alert("회원가입 완료 ");
+      navigate("/login");
+    }
+  }, [signupState]);
   // 중복 확인
   const overlapEmailEvent = () => {
     dispatch(__overlapEmail(signUpData.email));
@@ -67,76 +77,79 @@ const SignUpForm = () => {
     }
   };
   return (
-    <WrapSignUpForm>
-      <h2>회원가입</h2>
-      <p>최소한의 정보를 받고있습니다</p>
-      <WrapForm onSubmit={signUp}>
-        <div>
-          <label htmlFor="nick">이름</label>
-          <WrapInput>
-            <Input
-              type="text"
-              id="nick"
-              placeholder="이름 입력"
-              onChange={changeInput}
-            />
-          </WrapInput>
-          {nickCheckState ? null : (
-            <WarnningSpan>이름을 입력해주세요</WarnningSpan>
-          )}
-        </div>
-        <div>
-          <label htmlFor="email">이메일</label>
-          <WrapInput>
-            <Input
-              type="email"
-              id="email"
-              placeholder="이메일 계정"
-              onChange={changeInput}
-            />
-            <button disabled={!emailCheckState} onClick={overlapEmailEvent}>
-              중복확인
-            </button>
-          </WrapInput>
-          {emailCheckState ? (
-            !overlapEmail ? (
-              <WarnningSpan>중복확인 해주세요</WarnningSpan>
-            ) : null
-          ) : (
-            <WarnningSpan>아이디(이메일 계정)를 입력해주세요</WarnningSpan>
-          )}
-        </div>
-        <div>
-          <label htmlFor="pw">비밀번호</label>
-          <WrapInput>
-            <Input
-              type="password"
-              id="pw"
-              placeholder="비밀번호"
-              disabled={!overlapEmail}
-              onChange={changeInput}
-            />
-          </WrapInput>
-          <WrapInput>
-            <Input
-              type="password"
-              id="pwCheck"
-              placeholder="비밀번호 확인"
-              disabled={!overlapEmail}
-              onChange={changeInput}
-            />
-          </WrapInput>
-        </div>
-        <Button
-          size="size1"
-          color="white"
-          type="submit"
-          disabled={!submitState}
-        >
-          완료
-        </Button>
-      </WrapForm>
-    </WrapSignUpForm>
+    <>
+      <LogHeader />
+      <WrapSignUpForm>
+        <h2>회원가입</h2>
+        <p>최소한의 정보를 받고있습니다</p>
+        <WrapForm onSubmit={signUp}>
+          <div>
+            <label htmlFor="nick">이름</label>
+            <WrapInput>
+              <Input
+                type="text"
+                id="nick"
+                placeholder="이름 입력"
+                onChange={changeInput}
+              />
+            </WrapInput>
+            {nickCheckState ? null : (
+              <WarnningSpan>이름을 입력해주세요</WarnningSpan>
+            )}
+          </div>
+          <div>
+            <label htmlFor="email">이메일</label>
+            <WrapInput>
+              <Input
+                type="email"
+                id="email"
+                placeholder="이메일 계정"
+                onChange={changeInput}
+              />
+              <button disabled={!emailCheckState} onClick={overlapEmailEvent}>
+                중복확인
+              </button>
+            </WrapInput>
+            {emailCheckState ? (
+              !overlapEmail ? (
+                <WarnningSpan>중복확인 해주세요</WarnningSpan>
+              ) : null
+            ) : (
+              <WarnningSpan>아이디(이메일 계정)를 입력해주세요</WarnningSpan>
+            )}
+          </div>
+          <div>
+            <label htmlFor="pw">비밀번호</label>
+            <WrapInput>
+              <Input
+                type="password"
+                id="pw"
+                placeholder="비밀번호"
+                disabled={!overlapEmail}
+                onChange={changeInput}
+              />
+            </WrapInput>
+            <WrapInput>
+              <Input
+                type="password"
+                id="pwCheck"
+                placeholder="비밀번호 확인"
+                disabled={!overlapEmail}
+                onChange={changeInput}
+              />
+            </WrapInput>
+          </div>
+          <Button
+            size="size1"
+            color="white"
+            type="submit"
+            disabled={!submitState}
+          >
+            완료
+          </Button>
+        </WrapForm>
+      </WrapSignUpForm>
+    </>
   );
 };
 
