@@ -3,19 +3,20 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import CommentUpdateButton from "./CommentUpdateButton";
 import userimg from "../../images/userimage.png";
+import { __updateComment } from "../../redux/modules/post";
 
 const ReplyCard = ({ value }) => {
-  console.log(value);
+  console.log(value.replyId);
   const [toggleBtn, setToggleBtn] = useState(true);
   const dispatch = useDispatch();
   const commentRef = useRef(null);
   const updateComment = () => {
-    // dispatch(
-    //   __updateComment({
-    //     replyContent: commentRef.current.value,
-    //     id: replyId,
-    //   })
-    // );
+    dispatch(
+      __updateComment({
+        replyContent: commentRef.current.value,
+        id: value.replyId,
+      })
+    );
     setToggleBtn(true);
   };
   const openUpdateForm = () => {
@@ -32,32 +33,33 @@ const ReplyCard = ({ value }) => {
       <FlexRight>
         <FlexTop>
           <Username>
-            Username
-            <Text>5초전</Text>
+            {value.nickname}
+            <Text>{value.calculatedTime}</Text>
           </Username>
           <CommentUpdateButton
             open={openUpdateForm}
             close={closeUpdateForm}
-            commentId={value.commentId}
+            value={value}
           />
         </FlexTop>
-
-        <ContentText>{value.replyContent}</ContentText>
-
-        <CommentLabel>
-          <CommentInput maxlength="2000" maxheight="400" ref={commentRef}>
-            {value.replyContent}
-          </CommentInput>
-          <CommentButton
-            onClick={() =>
-              updateComment({
-                replyId: value.replyId,
-              })
-            }
-          >
-            등록
-          </CommentButton>
-        </CommentLabel>
+        {toggleBtn === true ? (
+          <ContentText>{value.replyContent}</ContentText>
+        ) : (
+          <CommentLabel>
+            <CommentInput maxlength="2000" maxheight="400" ref={commentRef}>
+              {value.replyContent}
+            </CommentInput>
+            <CommentButton
+              onClick={() =>
+                updateComment({
+                  replyId: value.replyId,
+                })
+              }
+            >
+              등록
+            </CommentButton>
+          </CommentLabel>
+        )}
       </FlexRight>
     </Flex>
   );

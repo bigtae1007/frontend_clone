@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { __deleteComment } from "../../redux/modules/comment";
+import { __deleteComment, __loadPosts } from "../../redux/modules/post";
+import { useParams } from "react-router-dom";
 
 const CommentUpdateButton = (props) => {
-  const { open, close, commentId } = props;
+  const { open, close, value } = props;
+  console.log(value);
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
   const dispatch = useDispatch();
+  const { id } = useParams();
   const deleteComment = () => {
     dispatch(
       __deleteComment({
-        id: commentId,
+        id: value.replyId,
       })
     );
-    console.log("코멘트아이디", commentId);
+    dispatch(__loadPosts(id));
   };
   return (
     <div>
@@ -46,7 +49,7 @@ const Flex = styled.div`
   gap: 3px;
   margin-right: 10px;
 `;
-const Button = styled.button`
+const Button = styled.div`
   background-color: transparent;
   border: 0;
   position: relative;

@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 
 const PostUpdateButton = (props) => {
   const { commentId } = props;
-  const { id } = useParams();
   const dispatch = useDispatch();
   const deletePost = () => {
     dispatch(

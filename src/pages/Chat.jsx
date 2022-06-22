@@ -6,16 +6,16 @@ const Chat = () => {
   const $websocket = useRef(null);
 
   const handleMsg = (msg) => {
-    console.log(msg);
+    // console.log(msg);
   };
 
   const handleClickSendTo = () => {
-    console.log("bb");
+    // console.log("bb");
     $websocket.current.sendMessage("/sendTo");
   };
 
   const handleClickSendTemplate = () => {
-    console.log("aa");
+    // console.log("aa");
     $websocket.current.sendMessage("/Template");
   };
 
