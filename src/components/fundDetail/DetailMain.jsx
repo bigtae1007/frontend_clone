@@ -8,6 +8,7 @@ import DetailHeader from "./DetailHeader";
 import DetailMenu from "./DetailMenu";
 import DetailSideMenu from "../DetailSideMenu";
 import { __getLoadDetailFund } from "../../redux/modules/funding";
+import DetailMediaHead from "./DetailMediaHead";
 
 const DetailMain = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const DetailMain = () => {
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
   return (
     <div>
+      <DetailMediaHead title={fundDetailData.title} />
       <DetailHeader
         title={fundDetailData.title}
         category={fundDetailData.category}

@@ -5,14 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 // 컴포넌트
 import Button from "../elem/Button";
+import ReWard from "./DetailSideMenu/ReWard";
 // 훅
 import useSlicePrice from "../custom/slicePrice";
-import ReWard from "./DetailSideMenu/ReWard";
 // 이미지
 import banner1 from "../images/banner1.png";
 import banner2 from "../images/banner2.png";
 import point from "../images/point.png";
 import partner from "../images/partner.png";
+// 모듈
 import { __getLoadRewardList } from "../redux/modules/reward";
 
 const DetailSideMenu = ({
