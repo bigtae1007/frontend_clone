@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../elem/Button";
-import Input from "../elem/Input";
+
 //컴포넌트
 import SNSButton from "../elem/SNSButton";
 import { KAKAO_AUTH_URL } from "../SocialLogin/Kakao/Auth";
+import LogHeader from "../components/Headers/LogHeader";
+import Button from "../elem/Button";
+import Input from "../elem/Input";
 //모듈
 import { __logIn } from "../redux/modules/user";
 import { emailCheck } from "../shared/regExp";
@@ -43,59 +45,62 @@ const LogIn = () => {
     }
   }, [loginState]);
   return (
-    <WrapLogin>
-      <h2>로그인</h2>
-      <WrapForm onSubmit={loginEvent}>
-        <WrapInput>
-          <Input
-            type="email"
-            placeholder="이메일 아이디"
-            onChange={changeInput}
-          />
-        </WrapInput>
-        {emailCheck(logInData.email) ? null : (
-          <WarnningSpan>올바른 이메일 형식이 아닙니다.</WarnningSpan>
-        )}
-        <WrapInput>
-          <Input
-            type="password"
-            placeholder="비밀번호"
-            onChange={changeInput}
-          />
-        </WrapInput>
+    <>
+      <LogHeader />
+      <WrapLogin>
+        <h2>로그인</h2>
+        <WrapForm onSubmit={loginEvent}>
+          <WrapInput>
+            <Input
+              type="email"
+              placeholder="이메일 아이디"
+              onChange={changeInput}
+            />
+          </WrapInput>
+          {emailCheck(logInData.email) ? null : (
+            <WarnningSpan>올바른 이메일 형식이 아닙니다.</WarnningSpan>
+          )}
+          <WrapInput>
+            <Input
+              type="password"
+              placeholder="비밀번호"
+              onChange={changeInput}
+            />
+          </WrapInput>
 
-        <div>
           <div>
-            <input type="checkbox" name="autoLogin" id="autoLogin" />
-            <label htmlFor="autoLogin">아이디 저장</label>
+            <div>
+              <input type="checkbox" name="autoLogin" id="autoLogin" />
+              <label htmlFor="autoLogin">아이디 저장</label>
+            </div>
+            <p>아이디·비밀번호 찾기</p>
           </div>
-          <p>아이디·비밀번호 찾기</p>
-        </div>
-        <Button size="size1" type="submit" disabled={!submitState}>
-          로그인
-        </Button>
-      </WrapForm>
-      <OrDiv>또는</OrDiv>
-      <WrapSNSLogIn>
-        <a href={KAKAO_AUTH_URL}>
-          <SNSButton url="kakao"></SNSButton>
-        </a>
-        <SNSButton url="naver"></SNSButton>
-        <SNSButton url="google"></SNSButton>
-        <SNSButton url="apple"></SNSButton>
-        <SNSButton url="facebook"></SNSButton>
-      </WrapSNSLogIn>
-      <p>
-        아직 와디즈 계정이 없나요?{" "}
-        <span
-          onClick={() => {
-            navigate("/signup/intro");
-          }}
-        >
-          회원가입
-        </span>
-      </p>
-    </WrapLogin>
+          <Button size="size1" type="submit" disabled={!submitState}>
+            로그인
+          </Button>
+        </WrapForm>
+        <OrDiv>또는</OrDiv>
+        <WrapSNSLogIn>
+          <a href={KAKAO_AUTH_URL}>
+            <SNSButton url="kakao"></SNSButton>
+          </a>
+          <SNSButton url="naver"></SNSButton>
+          <SNSButton url="google"></SNSButton>
+          <SNSButton url="apple"></SNSButton>
+          <SNSButton url="facebook"></SNSButton>
+        </WrapSNSLogIn>
+        <p>
+          아직 와디즈 계정이 없나요?{" "}
+          <span
+            onClick={() => {
+              navigate("/signup/intro");
+            }}
+          >
+            회원가입
+          </span>
+        </p>
+      </WrapLogin>
+    </>
   );
 };
 
