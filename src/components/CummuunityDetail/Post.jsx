@@ -1,37 +1,33 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+//컴포넌트
 import PostList from "./PostList";
 import PostForm from "./PostForm";
-import styled from "styled-components";
 import LoginModal from "./LoginModal";
 
 const Post = () => {
+  //게시글 작성 모달 toggle
   const [showPost, setshowPost] = useState(false);
-  const openPostForm = () => {
-    setshowPost(true);
-  };
-  const closePostForm = () => {
-    setshowPost(false);
+  const openPost = () => {
+    setshowPost(!showPost);
   };
   return (
     <PostWrap>
       <PostBox>
         <PostTitle>응원·의견·체험리뷰</PostTitle>
         <PostText>펀딩 종료전에 남긴 글입니다.</PostText>
-        <Button
-          onClick={() => {
-            setshowPost(!showPost);
-          }}
-        >
-          글 남기기
-        </Button>
+        <Button onClick={openPost}>글 남기기</Button>
       </PostBox>
       {showPost === true ? (
-        <div style={{ boxSizing: "content-box" }}>
-          {/* 로그인안된 경우 */}
+        <PostContent>
+          {/* 로그인 안된 경우 로그인 모달 창 오픈 */}
           {/* <LoginModal /> */}
-          {/* 로그인된 경우 */}
+          {/* 로그인된 경우  게시글 작성 모달 창 오픈
+              게시글 작성 모달 toggle props로 전달
+          */}
           <PostForm setshowPost={setshowPost} showPost={showPost} />
-        </div>
+        </PostContent>
       ) : null}
       <PostList />
     </PostWrap>
@@ -57,6 +53,9 @@ const PostBox = styled.div`
   @media screen and (max-width: 700px) {
     width: 100%;
   }
+`;
+const PostContent = styled.div`
+  box-sizing: "content-box";
 `;
 const PostTitle = styled.h2`
   line-height: 24px;

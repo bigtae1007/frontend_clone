@@ -3,8 +3,10 @@ import styled from "styled-components";
 import LoginModal from "./LoginModal";
 
 const CommentLogin = () => {
+  //클릭 시 로그인 모달 창 오픈
   const [showLogin, setshowLogin] = useState(false);
   const onClick = () => setshowLogin(true);
+
   return (
     <>
       <CommentDiv onClick={onClick}>로그인이 필요합니다.</CommentDiv>
@@ -14,6 +16,7 @@ const CommentLogin = () => {
 };
 
 export default CommentLogin;
+
 const CommentDiv = styled.div`
   width: 90%;
   opacity: 0.45;

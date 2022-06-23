@@ -1,17 +1,20 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux/es/exports";
-import { useParams } from "react-router-dom";
+
+// 패키지
+import { useDispatch } from "react-redux";
 import { __addComment } from "./../../redux/modules/post";
 
-const CommentPost = ({ id }) => {
+const CommentPost = ({ commentId }) => {
   const commentRef = useRef();
   const dispatch = useDispatch();
+
+  // 댓글 작성
   const addComment = () => {
     dispatch(
       __addComment({
         replyContent: commentRef.current.value,
-        id: id,
+        id: commentId,
       })
     );
   };
