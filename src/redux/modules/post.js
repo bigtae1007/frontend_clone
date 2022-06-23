@@ -70,7 +70,7 @@ export const __updatePost = (payload) => async (dispatch) => {
 };
 
 export const __deletePost = (payload) => async (dispatch) => {
-  await api.delete(`/api/fund/comments/${payload.id}`);
+  const msg = await api.delete(`/api/fund/comments/${payload.id}`);
   dispatch(deletePost(payload));
   alert("삭제 완료되었습니다.");
 };
@@ -100,7 +100,7 @@ export const __updateComment = (payload) => async (dispatch) => {
 
 export const __deleteComment = (payload) => async (dispatch) => {
   try {
-    await api.delete(`/api/fund/comments/reply/${payload.id}`);
+    const msg = await api.delete(`/api/fund/comments/reply/${payload.id}`);
     dispatch(deleteComment(payload));
     alert("댓글삭제 완료되었습니다.");
   } catch (error) {

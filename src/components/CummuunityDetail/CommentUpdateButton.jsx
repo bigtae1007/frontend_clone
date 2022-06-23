@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const CommentUpdateButton = (props) => {
   const { open, close, value } = props;
+  console.log(value.replyId);
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
   const dispatch = useDispatch();
