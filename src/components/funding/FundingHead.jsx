@@ -31,4 +31,10 @@ const ImgProgress = styled.img`
   display: flex;
   margin: 20px auto;
   width: 20%;
+  @media screen and (max-width: 1600px) {
+    width: 30%;
+    @media screen and (max-width: 1000px) {
+      width: 50%;
+    }
+  }
 `;

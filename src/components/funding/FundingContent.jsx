@@ -40,4 +40,18 @@ const WrapHeadText = styled.div`
     font-size: 0.8rem;
     font-weight: 600;
   }
+  @media screen and (max-width: 1700px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    div {
+      @media screen and (max-width: 1100px) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  }
 `;
