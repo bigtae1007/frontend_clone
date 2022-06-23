@@ -6,7 +6,6 @@ import CommentList from "./CommentList";
 import CommentPost from "./CommentPost";
 
 const PostCard = ({ value }) => {
-  console.log(value);
   const [showComment, setshowComment] = useState(false);
 
   const toggleComment = () => {

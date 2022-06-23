@@ -61,7 +61,6 @@ export const __updatePost = (payload) => async (dispatch) => {
       category: payload.category,
       content: payload.content,
     });
-    console.log(request);
     dispatch(updatePost(request.data));
     alert("수정 완료되었습니다.");
   } catch (error) {
