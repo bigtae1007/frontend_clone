@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.sqMsAtada9w_PEnJXGTbGwHaEo%26pid%3DApi&f=1">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## howis (Wadiz 클론 코딩)
 
-## Available Scripts
 
-In the project directory, you can run:
+* FE : 박태형, 손유정
+* BE : 김규관, 서만원, 신상우  (BE GitHub : https://github.com/Luwin-Seo/clone6_backend )
 
-### `yarn start`
+## 프로젝트 소개
+크라우드 펀딩 플랫폼 Wadiz 클론 코딩
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+## 프로젝트 기간
+##### 22\. 06\. 17 ~ 22\. 06. 23 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 프로젝트 주소 
+* 도메인 : http://btae.shop.s3-website.ap-northeast-2.amazonaws.com
+* 시연 영상 : https://youtu.be/InTUrvCMZUk
+* 
+### 사용 스택 
+FE : 
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Create React App-09D3AC?style=flat-square&logo=Create React App&logoColor=white"/>
+<img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled-components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat-square&logo=Amazon S3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+BE : 
+<img src="https://img.shields.io/badge/java-blue?style={plastic}"/>
+<img src="https://img.shields.io/badge/SpringBoot-green?style={plastic}"/> <img src="https://img.shields.io/badge/Spring Security-green?style={plastic}"/> <img src="https://img.shields.io/badge/Sourcetree-blue?style={plastic}"/> <img src="https://img.shields.io/badge/Postman-orange?style={plastic}"/> <img src="https://img.shields.io/badge/IntelliJ IDEA-black?style={plastic}"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+공용 : 
+ <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+### 구현 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### LOG
+* 로그인 : 로그인 기능, 로그인 후 토큰 저장 , SNS 소셜 로그인 kakao
+* 회원가입 : 아이디/닉네임 중복확인, 비밀번호 일치 확인 , 길이 확인
+* 로그아웃 : 토큰 삭제
 
-### `yarn eject`
+#### Mainpage
+* 게시물 가져오기
+#### funding
+* 펀딩하기 - 선택한 reward와 수량을 체크하여 펀딩 금액 & 남은 수량 변경
+#### 커뮤니티
+* 기존 글 가져오기
+* 새로 글 작성하기
+* 글 수정하기
+* 글 삭제하기
+- 가져오기 제외 로그인한 유저에게만 권한 부여 및 본인 글만 수정 삭제
+#### 댓글
+* 기존 댓글 가져오기
+* 새로 댓글 작성하기
+* 댓글 수정하기
+* 댓글 삭제하기
+- 가져오기 제외 로그인한 유저에게만 권한 부여 및 본인 글만 수정 삭제
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### CSS
+* Global-Style 사용 
+* 반응형 CSS
+* react-responsive - MediaQuerry 사용
