@@ -2,23 +2,28 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const LoginModal = () => {
+const LoginModal = ({ showLogin, setshowLogin }) => {
+  const closeLogin = () => {
+    setshowLogin(!showLogin);
+  };
   return (
     <div>
-      <ModalWrap>
-        <Modal>
-          <ModalTitle>로그인이 필요합니다</ModalTitle>
-          <Button>X</Button>
-          <ButtonFlex>
-            <SignUpButton>
-              <Link to="/signup">회원가입</Link>
-            </SignUpButton>
-            <LoginButton>
-              <Link to="/login">로그인</Link>
-            </LoginButton>
-          </ButtonFlex>
-        </Modal>
-      </ModalWrap>
+      {showLogin ? (
+        <ModalWrap>
+          <Modal>
+            <ModalTitle>로그인이 필요합니다</ModalTitle>
+            <Button onClick={closeLogin}>X</Button>
+            <ButtonFlex>
+              <SignUpButton>
+                <Link to="/signup">회원가입</Link>
+              </SignUpButton>
+              <LoginButton>
+                <Link to="/login">로그인</Link>
+              </LoginButton>
+            </ButtonFlex>
+          </Modal>
+        </ModalWrap>
+      ) : null}
     </div>
   );
 };

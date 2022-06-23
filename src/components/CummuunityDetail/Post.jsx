@@ -5,8 +5,11 @@ import styled from "styled-components";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
 import LoginModal from "./LoginModal";
+import { useSelector } from "react-redux";
 
 const Post = () => {
+  const isLogin = useSelector((state) => state.user.isLogin);
+
   //게시글 작성 모달 toggle
   const [showPost, setshowPost] = useState(false);
   const openPost = () => {
@@ -21,12 +24,11 @@ const Post = () => {
       </PostBox>
       {showPost === true ? (
         <PostContent>
-          {/* 로그인 안된 경우 로그인 모달 창 오픈 */}
-          {/* <LoginModal /> */}
-          {/* 로그인된 경우  게시글 작성 모달 창 오픈
-              게시글 작성 모달 toggle props로 전달
-          */}
-          <PostForm setshowPost={setshowPost} showPost={showPost} />
+          {isLogin ? (
+            <PostForm setshowPost={setshowPost} showPost={showPost} />
+          ) : (
+            <LoginModal />
+          )}
         </PostContent>
       ) : null}
       <PostList />

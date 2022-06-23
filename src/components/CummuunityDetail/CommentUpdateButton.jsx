@@ -6,7 +6,10 @@ import { useParams } from "react-router-dom";
 
 const CommentUpdateButton = (props) => {
   const { open, close, value } = props;
+<<<<<<< HEAD
   console.log(value);
+=======
+>>>>>>> youJG
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
   const dispatch = useDispatch();
@@ -53,6 +56,7 @@ const Button = styled.div`
   background-color: transparent;
   border: 0;
   position: relative;
+  cursor: pointer;
 `;
 const Circle = styled.div`
   width: 4px;
