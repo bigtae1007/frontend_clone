@@ -16,7 +16,7 @@
 
 ## 프로젝트 주소 
 * 도메인 : http://btae.shop.s3-website.ap-northeast-2.amazonaws.com
-* 시연 영상 : https://youtu.be/InTUrvCMZUk
+* 시연 영상 : https://youtu.be/mLhEfal7bEU
 * 
 ### 사용 스택 
 FE : 
