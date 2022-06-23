@@ -13,6 +13,8 @@ const ADD_COMMENT = "comment/ADD_COMMENT";
 const UPDATE_COMMENT = "comment/UPDATE_COMMENT";
 const DELETE_COMMENT = "comment/DELETE_COMMENT";
 
+const LOADING = "post/LOADING_STATE";
+const ERROR = "post/ERROR_STATE";
 // action함수 - POST
 const loadPost = (payload) => ({ type: LOAD_POST, payload });
 const addPost = (payload) => ({ type: ADD_POST, payload });
@@ -24,6 +26,9 @@ const addComment = (payload) => ({ type: ADD_COMMENT, payload });
 const updateComment = (payload) => ({ type: UPDATE_COMMENT, payload });
 const deleteComment = (payload) => ({ type: DELETE_COMMENT, payload });
 
+export const requestLoading = createAction(LOADING, (payload) => payload);
+export const requestError = createAction(ERROR, (payload) => payload);
+
 // 초기값
 const initialState = {
   list: [],
@@ -33,15 +38,19 @@ const initialState = {
 
 // Thunk - POST
 export const __loadPosts = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const data = await api.get(`/api/fund/${Number(payload)}/comments`);
     dispatch(loadPost(data.data.reverse()));
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
 export const __addPost = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const data = await api.post(`/api/fund/${payload.id}/comments`, {
       category: payload.category,
@@ -51,11 +60,14 @@ export const __addPost = (payload) => async (dispatch) => {
     dispatch(addPost(data.data));
     alert("추가 완료되었습니다.");
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
 export const __updatePost = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const request = await api.put(`/api/fund/comments/${payload.id}`, {
       category: payload.category,
@@ -64,7 +76,9 @@ export const __updatePost = (payload) => async (dispatch) => {
     dispatch(updatePost(request.data));
     alert("수정 완료되었습니다.");
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
@@ -76,28 +90,35 @@ export const __deletePost = (payload) => async (dispatch) => {
 
 // Thunk - COMMENT
 export const __addComment = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const data = await api.post(`/api/fund/comments/${payload.id}/reply`, {
       replyContent: payload.replyContent,
     });
     dispatch(addComment(data.data));
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
 export const __updateComment = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const data = await api.put(`/api/fund/comments/reply/${payload.id}`, {
       replyContent: payload.replyContent,
     });
     dispatch(updateComment(data.data));
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
 export const __deleteComment = (payload) => async (dispatch) => {
+  dispatch(requestLoading(true));
   try {
     const msg = await api.delete(`/api/fund/comments/reply/${payload.id}`);
     dispatch(
@@ -105,7 +126,9 @@ export const __deleteComment = (payload) => async (dispatch) => {
     );
     alert("댓글삭제 완료되었습니다.");
   } catch (error) {
-    console.log(error);
+    dispatch(requestError(error));
+  } finally {
+    dispatch(requestLoading(false));
   }
 };
 
@@ -164,7 +187,6 @@ const postReducer = (state = initialState, action) => {
       });
       return { ...state, list: newUpdateComment };
     case DELETE_COMMENT:
-      console.log(action.payload);
       const newDeletedComment = state.list.map((value) => {
         if (value.commendId === action.payload.commendId) {
           const newReply = value.replyResponseDto;
@@ -177,7 +199,6 @@ const postReducer = (state = initialState, action) => {
           return value;
         }
       });
-      console.log(newDeletedComment);
       return { ...state, list: [...newDeletedComment] };
     default:
       return state;

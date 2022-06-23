@@ -46,8 +46,6 @@ const commentReducer = (state = initialState, action) => {
       return { ...state, list: [action.payload, ...state.list] };
     case UPDATE_COMMENT:
       const newChangeComment = state.list.map((value) => {
-        console.log(value.replyId, action.payload);
-
         return value.replyId === Number(action.payload.replyId)
           ? action.payload
           : value;
