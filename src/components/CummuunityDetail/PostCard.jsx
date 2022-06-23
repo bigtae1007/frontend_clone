@@ -4,9 +4,11 @@ import userimg from "../../images/userimage.png";
 import PostUpdateButton from "./PostUpdateButton";
 import CommentList from "./CommentList";
 import CommentPost from "./CommentPost";
+import CommentLogin from "./CommentLogin";
+import { useSelector } from "react-redux";
 
 const PostCard = ({ value }) => {
-  console.log(value);
+  const isLogin = useSelector((state) => state.user.isLogin);
   const [showComment, setshowComment] = useState(false);
 
   const toggleComment = () => {
@@ -38,10 +40,11 @@ const PostCard = ({ value }) => {
             />
             <CommentWrap>
               <CommentImg src={userimg} />
-              {/* 로그인안된 경우 */}
-              {/* <CommentLogin /> */}
-              {/* 로그인된 경우 */}
-              <CommentPost commentId={value?.commentId} />
+              {isLogin ? (
+                <CommentPost commentId={value?.commentId} />
+              ) : (
+                <CommentLogin />
+              )}
             </CommentWrap>
           </FlexCol>
         ) : null}

@@ -10,7 +10,9 @@ const CommentLogin = () => {
   return (
     <>
       <CommentDiv onClick={onClick}>로그인이 필요합니다.</CommentDiv>
-      {showLogin ? <LoginModal /> : null}
+      {showLogin ? (
+        <LoginModal showLogin={showLogin} setshowLogin={setshowLogin} />
+      ) : null}
     </>
   );
 };

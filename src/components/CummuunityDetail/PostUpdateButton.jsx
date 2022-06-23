@@ -64,6 +64,7 @@ const Button = styled.div`
   background-color: transparent;
   border: 0;
   position: relative;
+  cursor: pointer;
 `;
 const Circle = styled.div`
   width: 4px;
