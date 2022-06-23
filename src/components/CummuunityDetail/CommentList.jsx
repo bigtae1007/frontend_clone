@@ -1,16 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux/es/exports";
+import React from "react";
+
 import ReplyCard from "./ReplyCard";
-const CommentList = ({ replyId }) => {
-  const CommentMap = useSelector((state) => state.comment.list);
-
-  // useEffect(() => {
-  // dispatch(__loadPosts(fundId));
-  // }, [dispatch]);
-
-  const commentRef = useRef();
-
-  return replyId.map((value, index) => {
+const CommentList = ({ replyResponseDto }) => {
+  return replyResponseDto.map((value, index) => {
     return <ReplyCard key={index} value={value} />;
   });
 };

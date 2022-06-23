@@ -17,6 +17,7 @@ const CommentPost = ({ commentId }) => {
         id: commentId,
       })
     );
+    commentRef.current.value = "";
   };
   return (
     <CommentLabel>

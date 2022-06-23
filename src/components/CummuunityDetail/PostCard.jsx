@@ -6,6 +6,7 @@ import CommentList from "./CommentList";
 import CommentPost from "./CommentPost";
 
 const PostCard = ({ value }) => {
+  console.log(value);
   const [showComment, setshowComment] = useState(false);
 
   const toggleComment = () => {
@@ -25,22 +26,22 @@ const PostCard = ({ value }) => {
               {value?.category} · {value?.calculatedTime}
             </Text>
           </Username>
-          <PostUpdateButton commentId={value.commentId} />
+          <PostUpdateButton commentId={value?.commentId} />
         </FlexTop>
         <ContentText>{value?.content}</ContentText>
         <Button onClick={toggleComment}>답글</Button>
         {showComment === true ? (
           <FlexCol>
             <CommentList
-              fundId={value.fundId}
-              replyId={value.replyResponseDto}
+              fundId={value?.fundId}
+              replyResponseDto={value?.replyResponseDto}
             />
             <CommentWrap>
               <CommentImg src={userimg} />
               {/* 로그인안된 경우 */}
               {/* <CommentLogin /> */}
               {/* 로그인된 경우 */}
-              <CommentPost id={value.commentId} />
+              <CommentPost commentId={value?.commentId} />
             </CommentWrap>
           </FlexCol>
         ) : null}

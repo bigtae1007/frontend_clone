@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PostUpdateModal from "./PostUpdateModal";
 import { useDispatch } from "react-redux/es/exports";
 import { __deletePost } from "../../redux/modules/post";
-import { useParams } from "react-router-dom";
 
 const PostUpdateButton = (props) => {
   const { commentId } = props;
