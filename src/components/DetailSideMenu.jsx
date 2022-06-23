@@ -28,8 +28,11 @@ const DetailSideMenu = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  // 로그인 상태 확인하기
   const isLogin = useSelector((state) => state.user.isLogin);
+  // 펀딩 달성 금액 %구하기
   const successPercent = parseInt((currentFund / goal) * 100);
+  // 금액에 3자리마다 ,찍기
   const slicePrice = useSlicePrice(String(currentFund));
 
   // 반응형을 위한 react-responsive 변수
@@ -37,10 +40,12 @@ const DetailSideMenu = ({
     query: "(max-width : 700px)",
   });
 
+  // reward 항목 가져오기
   useEffect(() => {
     dispatch(__getLoadRewardList(id));
   }, []);
 
+  // 펀딩하기 접근 권한 부여하기
   const checkLogin = () => {
     if (isLogin) {
       navigate(`/fund/funding/${id}`);

@@ -13,12 +13,13 @@ import DetailMediaHead from "./DetailMediaHead";
 const DetailMain = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  // 세부정보 가져오기
+  const fundDetailData = useSelector((state) => state.funding.fundDetail);
 
   // 세부정보 호출
   useEffect(() => {
     dispatch(__getLoadDetailFund(id));
   }, []);
-  const fundDetailData = useSelector((state) => state.funding.fundDetail);
   return (
     <div>
       <DetailMediaHead title={fundDetailData.title} />

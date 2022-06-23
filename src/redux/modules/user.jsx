@@ -52,7 +52,7 @@ export const __kakaoLogin = (payload) => async (dispatch, getState) => {
       dispatch(logIn(payload.email));
     }
   } catch (error) {
-    dispatch(loginError());
+    alert("로그인에 실패했습니다. 다시 시도해주세요");
   } finally {
     dispatch(requestLoading(false));
   }
@@ -114,8 +114,7 @@ export const __signUp = (payload) => async (dispatch, getState) => {
     });
     dispatch(signUp(true));
   } catch (error) {
-    alert("예상치 못한 에러가 발생했습니다. 다시 한번 시도해 주세요");
-    dispatch(requestError(error));
+    alert("예상치 못한 에러가 발생했습니다. 처음부터 다시 한번 시도해 주세요");
   } finally {
     dispatch(requestLoading(false));
   }

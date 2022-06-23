@@ -3,11 +3,6 @@ import styled from "styled-components";
 
 const DetailHeader = ({ title, category, img }) => {
   return (
-    // <WrapHead>
-    //   <HeadButton></HeadButton>
-    //   <div>{title} I 와디즈 펀딩</div>
-    //   <HeadButton></HeadButton>
-    // </WrapHead>
     <Head>
       <BackgroundHead img={img}></BackgroundHead>
       <div>
@@ -20,14 +15,6 @@ const DetailHeader = ({ title, category, img }) => {
 
 export default DetailHeader;
 
-const WrapHead = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const HeadButton = styled.button`
-  width: 50px;
-  height: 50px;
-`;
 const Head = styled.div`
   display: flex;
   justify-content: center;

@@ -10,11 +10,14 @@ const FundingRewardCard = ({
   patronPrice,
   setPatronPrice,
 }) => {
+  // 선택 상태 관리하기 선택했으면 true
   const [countState, setCountState] = useState(false);
+  // 수량 관리하기
   const [count, setCount] = useState(1);
 
   const slicePrice = useSlicePrice(String(reward.price));
   const slicedeliver = useSlicePrice(String(reward.deliveryFee));
+  // /n으로 줄바꿈있는 문자열 줄바꿈
   const newContent = reward.rewardContent?.split("/n");
   // 체크 상태 확인
   const changeCheck = (e) => {

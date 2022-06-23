@@ -15,7 +15,9 @@ const FundingForm = ({ fundReward, title }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+  //
   const [patronState, setPatronState] = useState({});
+  // 비공개 선택 사항 상태
   const [checkHidden, setCheckHidden] = useState({
     isNameHidden: false,
     isPriceHidden: false,
@@ -31,6 +33,7 @@ const FundingForm = ({ fundReward, title }) => {
       isNameHidden: checkHidden.isNameHidden,
       isPriceHidden: checkHidden.isPriceHidden,
     };
+    // 반복하여 각 리워드와 수량 추가하기
     for (let key in patronState) {
       if (patronState[key]) {
         payload.orderedRewards.push({
@@ -40,7 +43,7 @@ const FundingForm = ({ fundReward, title }) => {
       }
     }
     const res = await dispatch(__funding({ payload, id: id }));
-    console.log(res, "성공?");
+    // 펀딩 성공 시 alert 후 상세페이지로 이동
     if (res) {
       alert("회원님의 펀딩에 감사합니다!");
       navigate(-1);
