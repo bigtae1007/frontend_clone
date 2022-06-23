@@ -169,17 +169,6 @@ const DetailSideMenu = ({
 export default DetailSideMenu;
 const WrapSlideMenu = styled.div`
   width: 284px;
-  @media screen and (max-width: 700px) {
-    *:not(Button) {
-      display: none;
-    }
-    > Button {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
 `;
 
 const SuccessBar = styled.div`
