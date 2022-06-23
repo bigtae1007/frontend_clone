@@ -169,6 +169,9 @@ const DetailSideMenu = ({
 export default DetailSideMenu;
 const WrapSlideMenu = styled.div`
   width: 284px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const SuccessBar = styled.div`

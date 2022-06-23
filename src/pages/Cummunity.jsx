@@ -80,8 +80,11 @@ const WrapSideMenu = styled.div`
 `;
 
 const WrapBtn = styled.div`
+  width: 100%;
+  display: none;
   @media screen and (max-width: 700px) {
     position: fixed;
+    display: block;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
