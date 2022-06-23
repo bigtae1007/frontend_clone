@@ -55,7 +55,7 @@ const WrapMediaHead = styled.div`
     border: none;
     background-color: var(--white);
   }
-  @media screen and (min-width: 1330px) {
+  @media screen and (min-width: 1360px) {
     display: none;
   }
 `;

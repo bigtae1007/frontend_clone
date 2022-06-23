@@ -12,7 +12,7 @@ import { useMediaQuery } from "react-responsive";
 const Cummunity = () => {
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
   const middleMedia = useMediaQuery({
-    query: "(min-width : 1330px)",
+    query: "(min-width : 1360px)",
   });
   return (
     <div>
