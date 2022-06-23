@@ -37,7 +37,6 @@ const Slide = () => {
     >
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
           <SlideImg src={slide1} />
           <TextBox>
             <SlideTitle>
@@ -51,8 +50,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide2} />
           <TextBox>
             <SlideTitle>
@@ -66,8 +63,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide3} />
           <TextBox>
             <SlideTitle>
@@ -80,8 +75,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide4} />
           <TextBox>
             <SlideTitle>
@@ -95,8 +88,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide5} />
           <TextBox>
             <SlideTitle>와디즈 BEST 펀딩</SlideTitle>
@@ -106,8 +97,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide6} />
           <TextBox>
             <SlideTitle>와디즈 알림신청 TOP 20</SlideTitle>
@@ -117,8 +106,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide7} />
           <TextBox>
             <SlideTitle>
@@ -147,6 +134,11 @@ const SlideImgWrap = styled.div`
 `;
 const SlideImg = styled.img`
   width: 100%;
+  filter: brightness(65%);
+  @media screen and (max-width: 1080px) {
+    width: auto;
+    height: 100%;
+  }
 `;
 const SlideTitle = styled.p`
   font-size: 32px;
@@ -160,15 +152,18 @@ const SlideTxt = styled.span`
 const TextBox = styled.div`
   position: absolute;
   bottom: 20%;
-  left: 120px;
+  left: 210px;
   color: #fff;
   max-width: 1440px;
-`;
-const SlideBg = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.64));
+  @media screen and (max-width: 1270px) {
+    bottom: 25%;
+  }
+  @media screen and (max-width: 900px) {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    bottom: auto;
+    width: 90%;
+    text-align: center;
+  }
 `;

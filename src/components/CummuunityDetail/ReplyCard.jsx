@@ -6,7 +6,6 @@ import userimg from "../../images/userimage.png";
 import { __updateComment } from "../../redux/modules/post";
 
 const ReplyCard = ({ value }) => {
-  console.log(value.replyId);
   const [toggleBtn, setToggleBtn] = useState(true);
   const dispatch = useDispatch();
   const commentRef = useRef(null);

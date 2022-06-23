@@ -19,18 +19,18 @@ const Post = () => {
         <PostText>펀딩 종료전에 남긴 글입니다.</PostText>
         <Button
           onClick={() => {
-            setshowPost(true);
+            setshowPost(!showPost);
           }}
         >
           글 남기기
         </Button>
       </PostBox>
       {showPost === true ? (
-        <div>
+        <div style={{ boxSizing: "content-box" }}>
           {/* 로그인안된 경우 */}
           {/* <LoginModal /> */}
           {/* 로그인된 경우 */}
-          <PostForm open={openPostForm} close={closePostForm} />
+          <PostForm setshowPost={setshowPost} showPost={showPost} />
         </div>
       ) : null}
       <PostList />
@@ -41,11 +41,22 @@ const Post = () => {
 export default Post;
 const PostWrap = styled.div`
   width: 632px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    padding: 0 5%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 const PostBox = styled.div`
   padding: 20px 0;
   margin-bottom: 20px;
   border-bottom: 1px solid #90949c;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 const PostTitle = styled.h2`
   line-height: 24px;
@@ -53,11 +64,17 @@ const PostTitle = styled.h2`
   font-size: 19px;
   font-weight: 700;
   margin-bottom: 8px;
+  @media screen and (max-width: 700px) {
+    text-align: center;
+  }
 `;
 const PostText = styled.p`
   margin-bottom: 24px;
   color: rgba(0, 0, 0, 0.54);
   font-size: 13px;
+  @media screen and (max-width: 700px) {
+    text-align: center;
+  }
 `;
 const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -76,4 +93,7 @@ const Button = styled.button`
   background-color: #90949c;
   color: #fff;
   width: 343px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;

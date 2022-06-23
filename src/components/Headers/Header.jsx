@@ -86,6 +86,9 @@ const HeaderWrap = styled.div`
   align-items: center;
   color: var(--gray);
   border-bottom: 1px solid #f0f2f5;
+  @media screen and (max-width: 1270px) {
+    display: none;
+  }
 `;
 const HeaderBox = styled.header`
   width: 100%;

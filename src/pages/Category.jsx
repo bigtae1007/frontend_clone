@@ -9,12 +9,24 @@ import { Navigation } from "swiper";
 const Category = () => {
   return (
     <Swiper
-      slidesPerView={10}
+      style={{ padding: "0 5%" }}
+      slidesPerView={5}
       spaceBetween={0}
       slidesPerGroup={10}
       navigation={true}
       modules={[Navigation]}
       className="mySwiper2"
+      breakpoints={{
+        600: {
+          slidesPerView: 6,
+        },
+        700: {
+          slidesPerView: 7,
+        },
+        1160: {
+          slidesPerView: 10,
+        },
+      }}
     >
       <SwiperSlide>
         <CategoryFlex>
