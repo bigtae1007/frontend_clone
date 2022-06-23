@@ -16,7 +16,6 @@ const KakaoRedirectPage = () => {
     dispatch(__kakaoLogin(code));
   }, []);
   React.useEffect(() => {
-    console.log(loginError);
     if (loginError) {
       alert("오류가 발생했습니다. 다시 시도해주세요");
       navigate("/");
