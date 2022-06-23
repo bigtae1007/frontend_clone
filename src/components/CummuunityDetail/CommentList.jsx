@@ -14,7 +14,7 @@ const CommentList = ({ replyId }) => {
 
   const commentRef = useRef();
 
-  return replyId.map((value, index) => {
+  return replyId?.map((value, index) => {
     return <ReplyCard key={index} value={value} />;
   });
 };

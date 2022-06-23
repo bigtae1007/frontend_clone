@@ -47,6 +47,7 @@ export const __addPost = (payload) => async (dispatch) => {
       category: payload.category,
       content: payload.content,
     });
+    data.data.replyResponseDto = [];
     dispatch(addPost(data.data));
     alert("추가 완료되었습니다.");
   } catch (error) {

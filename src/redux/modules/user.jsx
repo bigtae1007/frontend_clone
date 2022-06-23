@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createAction, handleActions } from "redux-actions";
 import { api } from "../../shared/api";
 import { setCookie, deleteCookie } from "../../shared/Cookie";
