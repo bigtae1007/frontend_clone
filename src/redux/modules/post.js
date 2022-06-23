@@ -1,4 +1,5 @@
 import { api } from "../../shared/api";
+import { createAction } from "redux-actions";
 
 // actiontype - POST
 const LOAD_POST = "post/LOAD_POST";
@@ -160,7 +161,7 @@ const postReducer = (state = initialState, action) => {
     // Reducer - POST
     case ADD_COMMENT:
       const newAddComment = state.list.map((value) => {
-        if (value.commendId === action.payload.commendId) {
+        if (value.commentId === action.payload.commentId) {
           value.replyResponseDto = [action.payload, ...value.replyResponseDto];
           return value;
         } else {
