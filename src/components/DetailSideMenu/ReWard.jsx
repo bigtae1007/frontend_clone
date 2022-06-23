@@ -17,8 +17,6 @@ const ReWard = () => {
   // reward 게시물 끝에 도달했을 때 상태 true로 변경하기
   const handleScroll = (e) => {
     const scrollTop = document.documentElement.scrollTop;
-    console.log(endPoint.current.offsetHeight + endPoint.current.offsetTop);
-    console.log(scrollTop);
     if (
       scrollTop > endPoint.current.offsetHeight + endPoint.current.offsetTop &&
       endPoint.current.offsetHeight + endPoint.current.offsetTop !== 0

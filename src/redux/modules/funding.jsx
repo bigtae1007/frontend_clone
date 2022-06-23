@@ -60,7 +60,7 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
       dispatch(getLoad(response.data));
     }
   } catch (error) {
-    dispatch(requestError(error));
+    dispatch(requestError(error.message));
   } finally {
     dispatch(requestLoading(false));
   }
@@ -72,7 +72,7 @@ export const __getLoadDetailFund = (payload) => async (dispatch, getState) => {
     const response = await api.get(`/api/fund/${payload}`);
     dispatch(getLoadDetail(response.data));
   } catch (error) {
-    dispatch(requestError(error));
+    dispatch(requestError(error.message));
   } finally {
     dispatch(requestLoading(false));
   }

@@ -35,6 +35,8 @@ const initialState = {
       quantity: "500",
     },
   ],
+  loading: false,
+  error: null,
 };
 //action
 const LOAD = "funding/READ_LOAD";

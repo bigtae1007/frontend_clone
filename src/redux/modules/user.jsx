@@ -35,7 +35,7 @@ const loginError = createAction(LOGINERROR, (payload) => payload);
 
 //loadinng / error action creator
 export const requestLoading = createAction(LOADING, (payload) => ({ payload }));
-export const requestError = createAction(ERROR, (payload) => ({ payload }));
+export const requestError = createAction(ERROR, (payload) => payload);
 
 // thunk
 
@@ -52,7 +52,7 @@ export const __kakaoLogin = (payload) => async (dispatch, getState) => {
       dispatch(logIn(payload.email));
     }
   } catch (error) {
-    alert("로그인에 실패했습니다. 다시 시도해주세요");
+    dispatch(requestError(error.message));
   } finally {
     dispatch(requestLoading(false));
   }
@@ -114,7 +114,7 @@ export const __signUp = (payload) => async (dispatch, getState) => {
     });
     dispatch(signUp(true));
   } catch (error) {
-    alert("예상치 못한 에러가 발생했습니다. 처음부터 다시 한번 시도해 주세요");
+    alert("예상치 못한 에러가 발생했습니다. 처음부터 다시 작성해 주세요");
   } finally {
     dispatch(requestLoading(false));
   }
