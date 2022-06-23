@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const CommentUpdateButton = (props) => {
   const { open, close, value } = props;
+  console.log(value);
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
   const dispatch = useDispatch();
@@ -14,9 +15,9 @@ const CommentUpdateButton = (props) => {
     dispatch(
       __deleteComment({
         id: value.replyId,
+        commentId: value.commentId,
       })
     );
-    dispatch(__loadPosts(id));
   };
   return (
     <div>

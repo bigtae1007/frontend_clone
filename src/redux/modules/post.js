@@ -100,7 +100,9 @@ export const __updateComment = (payload) => async (dispatch) => {
 export const __deleteComment = (payload) => async (dispatch) => {
   try {
     const msg = await api.delete(`/api/fund/comments/reply/${payload.id}`);
-    dispatch(deleteComment(payload));
+    dispatch(
+      deleteComment({ replyId: payload.id, commentId: payload.commentId })
+    );
     alert("댓글삭제 완료되었습니다.");
   } catch (error) {
     console.log(error);
@@ -162,11 +164,12 @@ const postReducer = (state = initialState, action) => {
       });
       return { ...state, list: newUpdateComment };
     case DELETE_COMMENT:
+      console.log(action.payload);
       const newDeletedComment = state.list.map((value) => {
         if (value.commendId === action.payload.commendId) {
           const newReply = value.replyResponseDto;
-          const newReplyList = newReply.filter((value) => {
-            return value.id !== Number(action.payload.id);
+          const newReplyList = newReply.filter((v) => {
+            return Number(v.replyId) !== Number(action.payload.replyId);
           });
           value.replyResponseDto = newReplyList;
           return value;
@@ -174,6 +177,7 @@ const postReducer = (state = initialState, action) => {
           return value;
         }
       });
+      console.log(newDeletedComment);
       return { ...state, list: [...newDeletedComment] };
     default:
       return state;
