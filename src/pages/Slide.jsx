@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+// 이미지
 import slide1 from "../images/slide_1.jfif";
 import slide2 from "../images/slide_2.jfif";
 import slide3 from "../images/slide_3.jfif";
@@ -8,16 +9,13 @@ import slide5 from "../images/slide_5.jfif";
 import slide6 from "../images/slide_6.jfif";
 import slide7 from "../images/slide_7.jfif";
 
-// Import Swiper React components
+// 스와이퍼
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+
 const Slide = () => {
   return (
     <Swiper
@@ -140,15 +138,6 @@ const SlideImg = styled.img`
     height: 100%;
   }
 `;
-const SlideTitle = styled.p`
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-const SlideTxt = styled.span`
-  font-size: 13px;
-  font-weight: bold;
-`;
 const TextBox = styled.div`
   position: absolute;
   bottom: 20%;
@@ -166,4 +155,13 @@ const TextBox = styled.div`
     width: 90%;
     text-align: center;
   }
+`;
+const SlideTitle = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+const SlideTxt = styled.span`
+  font-size: 13px;
+  font-weight: bold;
 `;
