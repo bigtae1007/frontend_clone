@@ -194,10 +194,18 @@ const WrapSelectText = styled.div`
       }
     }
   }
+  @media screen and (max-width: 1150px) {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 `;
 const WrapSelectDisclosure = styled.div`
   margin: 0 auto;
   width: 60%;
+  @media screen and (max-width: 1150px) {
+    width: 100%;
+  }
 `;
 
 const SelectDisclosure = styled.div`
@@ -217,6 +225,17 @@ const SelectDisclosureImg = styled.div`
   margin-top: 20px;
   > img {
     width: 100%;
+  }
+  @media screen and (max-width: 1560px) {
+    flex-direction: column;
+    align-items: center;
+    > img {
+      width: 50%;
+    }
+    @media screen and (max-width: 1150px) {
+      flex-direction: row;
+      width: 100%;
+    }
   }
 `;
 
