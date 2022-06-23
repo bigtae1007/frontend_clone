@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __addPost } from "../../redux/modules/post";
 import { useParams } from "react-router-dom";
-const PostForm = () => {
+const PostForm = ({ setshowPost, showPost }) => {
   const [showForm, setshowForm] = useState(true);
   const [category, setCategory] = useState();
   const contentRef = useRef();
@@ -18,7 +18,10 @@ const PostForm = () => {
         id: id,
       })
     );
-    setshowForm(false);
+    setshowForm(!showPost);
+  };
+  const onclick = () => {
+    setshowForm(!showPost);
   };
   const handleChange = (event) => {
     setCategory(event.target.value);

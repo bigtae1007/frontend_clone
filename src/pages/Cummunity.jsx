@@ -6,12 +6,18 @@ import DetailMenu from "../components/fundDetail/DetailMenu";
 import DetailSideMenu from "../components/DetailSideMenu";
 import Post from "../components/CummuunityDetail/Post";
 import Header from "../components/Headers/Header";
+import DetailMediaHead from "../components/fundDetail/DetailMediaHead";
+import { useMediaQuery } from "react-responsive";
 
 const Cummunity = () => {
   const fundDetailData = useSelector((state) => state.funding.fundDetail);
+  const middleMedia = useMediaQuery({
+    query: "(min-width : 1360px)",
+  });
   return (
     <div>
-      <Header />
+      {middleMedia && <Header />}
+      <DetailMediaHead title={fundDetailData.title} />
       <DetailHeader
         title={fundDetailData.title}
         category={fundDetailData.category}
@@ -41,4 +47,8 @@ const WrapContent = styled.div`
   justify-content: center;
   gap: 2%;
   width: 100%;
+  @media screen and (max-width: 700px) {
+    margin: 0;
+    display: block;
+  }
 `;

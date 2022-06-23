@@ -1,37 +1,33 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+//컴포넌트
 import PostList from "./PostList";
 import PostForm from "./PostForm";
-import styled from "styled-components";
 import LoginModal from "./LoginModal";
 
 const Post = () => {
+  //게시글 작성 모달 toggle
   const [showPost, setshowPost] = useState(false);
-  const openPostForm = () => {
-    setshowPost(true);
-  };
-  const closePostForm = () => {
-    setshowPost(false);
+  const openPost = () => {
+    setshowPost(!showPost);
   };
   return (
     <PostWrap>
       <PostBox>
         <PostTitle>응원·의견·체험리뷰</PostTitle>
         <PostText>펀딩 종료전에 남긴 글입니다.</PostText>
-        <Button
-          onClick={() => {
-            setshowPost(true);
-          }}
-        >
-          글 남기기
-        </Button>
+        <Button onClick={openPost}>글 남기기</Button>
       </PostBox>
       {showPost === true ? (
-        <div>
-          {/* 로그인안된 경우 */}
+        <PostContent>
+          {/* 로그인 안된 경우 로그인 모달 창 오픈 */}
           {/* <LoginModal /> */}
-          {/* 로그인된 경우 */}
-          <PostForm open={openPostForm} close={closePostForm} />
-        </div>
+          {/* 로그인된 경우  게시글 작성 모달 창 오픈
+              게시글 작성 모달 toggle props로 전달
+          */}
+          <PostForm setshowPost={setshowPost} showPost={showPost} />
+        </PostContent>
       ) : null}
       <PostList />
     </PostWrap>
@@ -41,11 +37,25 @@ const Post = () => {
 export default Post;
 const PostWrap = styled.div`
   width: 632px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    padding: 0 5%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 const PostBox = styled.div`
   padding: 20px 0;
   margin-bottom: 20px;
   border-bottom: 1px solid #90949c;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+`;
+const PostContent = styled.div`
+  box-sizing: "content-box";
 `;
 const PostTitle = styled.h2`
   line-height: 24px;
@@ -53,11 +63,17 @@ const PostTitle = styled.h2`
   font-size: 19px;
   font-weight: 700;
   margin-bottom: 8px;
+  @media screen and (max-width: 700px) {
+    text-align: center;
+  }
 `;
 const PostText = styled.p`
   margin-bottom: 24px;
   color: rgba(0, 0, 0, 0.54);
   font-size: 13px;
+  @media screen and (max-width: 700px) {
+    text-align: center;
+  }
 `;
 const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -76,4 +92,7 @@ const Button = styled.button`
   background-color: #90949c;
   color: #fff;
   width: 343px;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;

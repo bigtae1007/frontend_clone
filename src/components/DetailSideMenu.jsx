@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 // 컴포넌트
 import Button from "../elem/Button";
+import ReWard from "./DetailSideMenu/ReWard";
 // 훅
 import useSlicePrice from "../custom/slicePrice";
-import ReWard from "./DetailSideMenu/ReWard";
 // 이미지
 import banner1 from "../images/banner1.png";
 import banner2 from "../images/banner2.png";
 import point from "../images/point.png";
 import partner from "../images/partner.png";
+// 모듈
 import { __getLoadRewardList } from "../redux/modules/reward";
 
 const DetailSideMenu = ({
@@ -27,8 +28,11 @@ const DetailSideMenu = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  // 로그인 상태 확인하기
   const isLogin = useSelector((state) => state.user.isLogin);
+  // 펀딩 달성 금액 %구하기
   const successPercent = parseInt((currentFund / goal) * 100);
+  // 금액에 3자리마다 ,찍기
   const slicePrice = useSlicePrice(String(currentFund));
 
   // 반응형을 위한 react-responsive 변수
@@ -36,10 +40,12 @@ const DetailSideMenu = ({
     query: "(max-width : 700px)",
   });
 
+  // reward 항목 가져오기
   useEffect(() => {
     dispatch(__getLoadRewardList(id));
   }, []);
 
+  // 펀딩하기 접근 권한 부여하기
   const checkLogin = () => {
     if (isLogin) {
       navigate(`/fund/funding/${id}`);
@@ -83,7 +89,7 @@ const DetailSideMenu = ({
               {slicePrice} <span> 원 펀딩</span>
             </h3>
             <h3>
-              {supportersCount} <span> 명의 서포터</span>
+              {supportersCount} <span> 100 명의 서포터</span>
             </h3>
           </WrapText>
         </>
@@ -93,7 +99,8 @@ const DetailSideMenu = ({
       </Button>
       <WrapBtn>
         <button>
-          <span>하트</span>
+          <Heart state={true}>♥</Heart>
+          <span>100</span>
           {likeCount}
         </button>
         <button>문의</button>
@@ -124,7 +131,7 @@ const DetailSideMenu = ({
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGZpbGw9IiMwMEM0QzQiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik04IDhjLTEuNjUzLS4wMS0zLTEuMy0zLTMuMDQyQzUgMy4zNDMgNi4zNDcgMiA4IDJzMyAxLjM0MyAzIDIuOTU4QzExIDYuNjk5IDkuNjUzIDguMDEgOCA4ek0xMy4zMTIgMTRIMi42ODhDMi4yMTQgMTQgMiAxMy42OTggMiAxMy4yNzQgMiAxMi4wMjMgMy45MTcgOC43NSA4IDguNzVzNiAzLjI3MyA2IDQuNTI0YzAgLjQyNC0uMjE0LjcyNi0uNjg4LjcyNnoiLz4KICAgICAgICA8L2c+CiAgICAgICAgPHBhdGggZD0iTTAgMGgxNnYxNkgweiIvPgogICAgPC9nPgo8L3N2Zz4K"
                   alt="사람이미지 로고"
                 />
-                <span>서포터 {supportersCount} 명</span>
+                <span>서포터 100 명</span>
               </div>
               <div>
                 <p>펀딩.스토어 합산</p>
@@ -162,9 +169,16 @@ const DetailSideMenu = ({
 export default DetailSideMenu;
 const WrapSlideMenu = styled.div`
   width: 284px;
-
   @media screen and (max-width: 700px) {
-    width: 100%;
+    *:not(Button) {
+      display: none;
+    }
+    > Button {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 `;
 
@@ -182,6 +196,9 @@ const SuccessBar = styled.div`
   @media screen and (max-width: 700px) {
     width: 100%;
   }
+`;
+const Heart = styled.span`
+  color: ${({ state }) => (state ? "var(--red)" : "var(--grey)")};
 `;
 
 const WrapText = styled.div`

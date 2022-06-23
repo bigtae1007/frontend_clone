@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+// 이미지
 import slide1 from "../images/slide_1.jfif";
 import slide2 from "../images/slide_2.jfif";
 import slide3 from "../images/slide_3.jfif";
@@ -8,16 +9,13 @@ import slide5 from "../images/slide_5.jfif";
 import slide6 from "../images/slide_6.jfif";
 import slide7 from "../images/slide_7.jfif";
 
-// Import Swiper React components
+// 스와이퍼
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+
 const Slide = () => {
   return (
     <Swiper
@@ -37,7 +35,6 @@ const Slide = () => {
     >
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
           <SlideImg src={slide1} />
           <TextBox>
             <SlideTitle>
@@ -51,8 +48,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide2} />
           <TextBox>
             <SlideTitle>
@@ -66,8 +61,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide3} />
           <TextBox>
             <SlideTitle>
@@ -80,8 +73,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide4} />
           <TextBox>
             <SlideTitle>
@@ -95,8 +86,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide5} />
           <TextBox>
             <SlideTitle>와디즈 BEST 펀딩</SlideTitle>
@@ -106,8 +95,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide6} />
           <TextBox>
             <SlideTitle>와디즈 알림신청 TOP 20</SlideTitle>
@@ -117,8 +104,6 @@ const Slide = () => {
       </SwiperSlide>
       <SwiperSlide>
         <SlideImgWrap>
-          <SlideBg />
-
           <SlideImg src={slide7} />
           <TextBox>
             <SlideTitle>
@@ -147,6 +132,29 @@ const SlideImgWrap = styled.div`
 `;
 const SlideImg = styled.img`
   width: 100%;
+  filter: brightness(65%);
+  @media screen and (max-width: 1080px) {
+    width: auto;
+    height: 100%;
+  }
+`;
+const TextBox = styled.div`
+  position: absolute;
+  bottom: 20%;
+  left: 210px;
+  color: #fff;
+  max-width: 1440px;
+  @media screen and (max-width: 1270px) {
+    bottom: 25%;
+  }
+  @media screen and (max-width: 900px) {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    bottom: auto;
+    width: 90%;
+    text-align: center;
+  }
 `;
 const SlideTitle = styled.p`
   font-size: 32px;
@@ -156,19 +164,4 @@ const SlideTitle = styled.p`
 const SlideTxt = styled.span`
   font-size: 13px;
   font-weight: bold;
-`;
-const TextBox = styled.div`
-  position: absolute;
-  bottom: 20%;
-  left: 120px;
-  color: #fff;
-  max-width: 1440px;
-`;
-const SlideBg = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.64));
 `;

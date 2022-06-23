@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PostUpdateModal from "./PostUpdateModal";
 import { useDispatch } from "react-redux/es/exports";
 import { __deletePost } from "../../redux/modules/post";
-import { useParams } from "react-router-dom";
 
 const PostUpdateButton = (props) => {
   const { commentId } = props;
@@ -15,16 +14,14 @@ const PostUpdateButton = (props) => {
       })
     );
   };
+  const openUpdate = () => {
+    setshowUpdate(true);
+  };
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
 
   const [showUpdate, setshowUpdate] = useState(false);
-  const openUpdateModal = () => {
-    setshowUpdate(true);
-  };
-  const closeUpdateModal = () => {
-    setshowUpdate(false);
-  };
+
   return (
     <div>
       <Button onClick={onClick2}>
@@ -36,13 +33,7 @@ const PostUpdateButton = (props) => {
         {showButton === true ? (
           <ButtonList>
             <li>
-              <Button
-                onClick={() => {
-                  setshowUpdate(true);
-                }}
-              >
-                수정
-              </Button>
+              <Button onClick={openUpdate}>수정</Button>
             </li>
             <li>
               <Button onClick={deletePost}>삭제</Button>
@@ -53,8 +44,8 @@ const PostUpdateButton = (props) => {
 
       {showUpdate === true ? (
         <PostUpdateModal
-          open={openUpdateModal}
-          close={closeUpdateModal}
+          showUpdate={showUpdate}
+          setshowUpdate={setshowUpdate}
           commentId={commentId}
         />
       ) : null}
@@ -69,7 +60,7 @@ const Flex = styled.div`
   gap: 3px;
   margin-right: 10px;
 `;
-const Button = styled.button`
+const Button = styled.div`
   background-color: transparent;
   border: 0;
   position: relative;

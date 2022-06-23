@@ -22,9 +22,11 @@ const DetailContent = ({
   likeCount,
   title,
 }) => {
+  // 미디어 쿼리
   const middleMedia = useMediaQuery({
     query: "(max-width : 700px)",
   });
+  // 가격 ,붙이기
   const slicePrice = useSlicePrice(String(goal));
   return (
     <WrapContent>

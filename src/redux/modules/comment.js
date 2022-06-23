@@ -21,22 +21,17 @@ const initialState = {
 
 //thunk
 export const __addComment = (payload) => async (dispatch) => {
-  console.log("이건페이로드", payload);
   const data = await api.post(`/api/fund/comments/${payload.fundId}/reply`, {
     replyContent: payload.replyContent,
   });
   dispatch(addComment(data.data));
-  console.log("이건데이터", data);
 };
 
 export const __updateComment = (payload) => async (dispatch, getState) => {
-  console.log("이건페이로드", payload);
-
   const data = await api.put(`/api/fund/comments/reply/${payload.id}`, {
     replyContent: payload.replyContent,
   });
   dispatch(updateComment(data.data));
-  console.log("이건데이터", data);
 };
 
 export const __deleteComment = (payload) => async (dispatch, getState) => {

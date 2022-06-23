@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 
 import { api } from "../../shared/api";
-import { setCookie } from "../../shared/Cookie";
 // initialState
 const initialState = {
   loading: false,
@@ -61,7 +60,7 @@ export const __getLoadFundList = () => async (dispatch, getState) => {
       dispatch(getLoad(response.data));
     }
   } catch (error) {
-    dispatch(requestError(error));
+    dispatch(requestError(error.message));
   } finally {
     dispatch(requestLoading(false));
   }
@@ -71,11 +70,9 @@ export const __getLoadDetailFund = (payload) => async (dispatch, getState) => {
   dispatch(requestLoading(true));
   try {
     const response = await api.get(`/api/fund/${payload}`);
-    if ((response.status = 200)) {
-      dispatch(getLoadDetail(response.data));
-    }
+    dispatch(getLoadDetail(response.data));
   } catch (error) {
-    dispatch(requestError(error));
+    dispatch(requestError(error.message));
   } finally {
     dispatch(requestLoading(false));
   }

@@ -11,11 +11,12 @@ const KakaoRedirectPage = () => {
   // 코드 보내기
   let code = new URL(window.location.href).searchParams.get("code");
   const isLogin = useSelector((state) => state.user.isLogin);
-  const loginError = useSelector((state) => state.user.loginError);
+  const loginError = useSelector((state) => state.user.error);
   React.useEffect(() => {
     dispatch(__kakaoLogin(code));
   }, []);
   React.useEffect(() => {
+    console.log(loginError);
     if (loginError) {
       alert("오류가 발생했습니다. 다시 시도해주세요");
       navigate("/");

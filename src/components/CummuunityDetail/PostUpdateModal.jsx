@@ -2,10 +2,8 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { __updatePost } from "../../redux/modules/post";
-import { useParams } from "react-router-dom";
 const PostUpdateModal = (props) => {
-  const { open, close, commentId } = props;
-  const [showForm, setshowForm] = useState(true);
+  const { showUpdate, setshowUpdate, commentId } = props;
   const dispatch = useDispatch();
   const contentRef = useRef();
   const [category, setCategory] = useState();
@@ -17,18 +15,21 @@ const PostUpdateModal = (props) => {
         id: commentId,
       })
     );
-    setshowForm(!showForm);
+    setshowUpdate(!showUpdate);
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
+  const CloseUpdate = () => {
+    setshowUpdate(!showUpdate);
+  };
   return (
     <>
-      {open ? (
+      {showUpdate ? (
         <ModalWrap>
           <Modal>
             <ModalTitle>글 수정하기</ModalTitle>
-            <Button onClick={close}>X</Button>
+            <Button onClick={CloseUpdate}>X</Button>
             <ModalP>
               응원·의견·체험리뷰를 남겨주세요
               <br />

@@ -9,12 +9,23 @@ import { Navigation } from "swiper";
 const Category = () => {
   return (
     <Swiper
-      slidesPerView={10}
+      slidesPerView={5}
       spaceBetween={0}
       slidesPerGroup={10}
       navigation={true}
       modules={[Navigation]}
       className="mySwiper2"
+      breakpoints={{
+        600: {
+          slidesPerView: 6,
+        },
+        700: {
+          slidesPerView: 7,
+        },
+        1160: {
+          slidesPerView: 10,
+        },
+      }}
     >
       <SwiperSlide>
         <CategoryFlex>
@@ -35,7 +46,7 @@ const Category = () => {
       <SwiperSlide>
         <CategoryFlex>
           <CategoryImgWrap>
-            <CategoryImg src="https://www.wadiz.kr/ft/images/green001/2022/0617/20220617190551566_null.jpg" />
+            <CategoryImg src="https://static.wadiz.kr/assets/reward-category/reward_banner_thumb/reward_banner_thumb_288.jpg" />
           </CategoryImgWrap>
           <CategoryText>패션·잡화</CategoryText>
         </CategoryFlex>
@@ -185,5 +196,4 @@ const CategoryFlex = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90px;
 `;
