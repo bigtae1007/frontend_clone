@@ -65,5 +65,4 @@ const CommentButton = styled.button`
   border: 0;
   padding: 10px 20px;
   border-radius: 3px;
-  z-index: 99;
 `;
