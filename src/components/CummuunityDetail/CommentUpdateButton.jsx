@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { __deleteComment, __loadPosts } from "../../redux/modules/post";
 import { useParams } from "react-router-dom";
 
 const CommentUpdateButton = (props) => {
   const { open, close, value } = props;
+  const isLogin = useSelector((state) => state.user.isLogin);
   const [showButton, setshowButton] = useState(false);
   const onClick2 = () => setshowButton(!showButton);
   const dispatch = useDispatch();
@@ -20,23 +21,25 @@ const CommentUpdateButton = (props) => {
   };
   return (
     <div>
-      <Button onClick={onClick2}>
-        <Flex>
-          <Circle></Circle>
-          <Circle></Circle>
-          <Circle></Circle>
-        </Flex>
-        {showButton ? (
-          <ButtonList>
-            <li>
-              <Button onClick={close}>수정</Button>
-            </li>
-            <li>
-              <Button onClick={deleteComment}>삭제</Button>
-            </li>
-          </ButtonList>
-        ) : null}
-      </Button>
+      {isLogin ? (
+        <Button onClick={onClick2}>
+          <Flex>
+            <Circle></Circle>
+            <Circle></Circle>
+            <Circle></Circle>
+          </Flex>
+          {showButton ? (
+            <ButtonList>
+              <li>
+                <Button onClick={close}>수정</Button>
+              </li>
+              <li>
+                <Button onClick={deleteComment}>삭제</Button>
+              </li>
+            </ButtonList>
+          ) : null}
+        </Button>
+      ) : null}
     </div>
   );
 };

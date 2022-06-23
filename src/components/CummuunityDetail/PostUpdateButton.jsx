@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PostUpdateModal from "./PostUpdateModal";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 import { __deletePost } from "../../redux/modules/post";
 
 const PostUpdateButton = (props) => {
+  const isLogin = useSelector((state) => state.user.isLogin);
+
   const { commentId } = props;
   const dispatch = useDispatch();
   const deletePost = () => {
@@ -24,30 +26,34 @@ const PostUpdateButton = (props) => {
 
   return (
     <div>
-      <Button onClick={onClick2}>
-        <Flex>
-          <Circle></Circle>
-          <Circle></Circle>
-          <Circle></Circle>
-        </Flex>
-        {showButton === true ? (
-          <ButtonList>
-            <li>
-              <Button onClick={openUpdate}>수정</Button>
-            </li>
-            <li>
-              <Button onClick={deletePost}>삭제</Button>
-            </li>
-          </ButtonList>
-        ) : null}
-      </Button>
+      {isLogin ? (
+        <div>
+          <Button onClick={onClick2}>
+            <Flex>
+              <Circle></Circle>
+              <Circle></Circle>
+              <Circle></Circle>
+            </Flex>
+            {showButton === true ? (
+              <ButtonList>
+                <li>
+                  <Button onClick={openUpdate}>수정</Button>
+                </li>
+                <li>
+                  <Button onClick={deletePost}>삭제</Button>
+                </li>
+              </ButtonList>
+            ) : null}
+          </Button>
 
-      {showUpdate === true ? (
-        <PostUpdateModal
-          showUpdate={showUpdate}
-          setshowUpdate={setshowUpdate}
-          commentId={commentId}
-        />
+          {showUpdate === true ? (
+            <PostUpdateModal
+              showUpdate={showUpdate}
+              setshowUpdate={setshowUpdate}
+              commentId={commentId}
+            />
+          ) : null}
+        </div>
       ) : null}
     </div>
   );
